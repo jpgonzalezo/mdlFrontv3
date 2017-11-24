@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="wow fadeInUp">
+  <div class="module block-new-books module-block">
+    <div class="module-heading">
+      <h2 class="module-title">BEST SELLERS</h2>
+      <p class="module-subtitle">Libros mas vendidos</p>
+  </div><!-- /.module-heading -->
+
+
+
+
+  <ngx-carousel
+  [inputs]="carouselTile"
+  (carouselLoad)="carouselTileLoad($event)">
+  <button NgxCarouselPrev class='leftRs'>&lt;</button>
+  <button NgxCarouselNext class='rightRs'>&gt;</button>
+  
+    <ngx-tile NgxCarouselItem *ngFor="let libro of libros">
+  
+  
+        <div class="module-body">
+            <div class="books">
+              <div id="new-carousel" class="home-owl-carousel">
+                <div class="item item-carousel">
+                <div class="books">
+                  <div class="book">
+                    <div class="book-cover">
+                      <div class="book-inner">
+                        <img src="{{libro.imagenURL}}" width="193" height="240" alt="">
+                        <div class="fade"></div>
+                        <!-- precio del libro-->
+                        <div class="book-price">
+                          <span class="price"> ${{libro.precio}}</span>
+                        </div>
+  
+                        <div class="cart animate-effect">
+                          <div class="action">
+                            <a class="add-to-cart" href="detail.html" title="Add to Cart">
+                              <i class="icon icon-plus fa fa-plus-circle"></i>
+                            </a>
+                            <a class="add-to-cart" href="#" title="Favourite">
+                              <i class="icon icon-heart fa fa-heart"></i>
+                            </a>
+                          </div>
+                        </div><!-- /.cart -->
+                      </div> <!--bookinner-->
+                    </div><!--bookcover-->
+                    
+                    <div class="book-details">
+                        <h5 class="book-title"><a (click)="goToBookDetail(libro.id)">{{libro.titulo}}</a></h5>
+                        <p class="book-author">{{libro.autor.nombre}}</p>
+                        <div class="star-rating">
+                          <i class="fa fa-star color"></i>
+                          <i class="fa fa-star color"></i>
+                          <i class="fa fa-star color"></i>
+                          <i class="fa fa-star color"></i>
+                          <i class="fa fa-star "></i>
+                        </div><!-- /.star-rating -->
+                    </div><!-- /.book-details -->
+  
+  
+                  </div> <!--book-->
+                </div> <!--books-->
+              </div>
+              </div> <!-- new-carousel-->
+            </div> <!--books-->
+          </div> <!-- module-body-->
+       
+    </ngx-tile>
+  </ngx-carousel>
+  </div>
+  </div>

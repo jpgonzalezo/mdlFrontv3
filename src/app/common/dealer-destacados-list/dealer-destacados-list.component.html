@@ -1,0 +1,46 @@
+
+<div class="container">
+        <div class="wow fadeInUp">
+                <div class="module block-new-books module-block">
+        <div class="module-heading">
+                <h2 class="module-title">Dealers Destacados</h2>
+                <p class="module-subtitle">Conoce a nuestros vendedores del mes</p>
+            </div><!-- /.module-heading -->
+                    
+<ngx-carousel
+[inputs]="carouselTile"
+(carouselLoad)="carouselTileLoad($event)">
+<button NgxCarouselPrev class='leftRs'>&lt;</button>
+<button NgxCarouselNext class='rightRs'>&gt;</button>
+
+  <ngx-tile NgxCarouselItem *ngFor="let dealer of dealers">
+
+
+        <div class="module-body" id="featured-author">
+        <div class="authors">
+                <div class="nombreDealer"><h3 class="author-name"><a href="detail.html">{{dealer.nombre}}</a></h3></div>
+            <div class="item item-author-block author" >
+                
+                    
+                <a href="">
+                    <div class="author-dp">
+                        <img src="assets/images/blank.gif" data-echo="assets/images/book-authors/1.jpg"  alt="">
+                    </div>
+                </a>
+                <div class="author-details">
+                    
+                   
+                </div><!-- /.author-details -->
+            </div><!-- /.item -->
+            
+        </div>
+        <!--<a href="category.html" class="btn btn-primary btn-view-books">Ver Catálogo</a>-->
+    </div> 
+
+
+     
+  </ngx-tile>
+</ngx-carousel>
+</div>
+</div>
+</div>

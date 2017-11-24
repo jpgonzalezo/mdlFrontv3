@@ -1,0 +1,214 @@
+<div class="wrapper">
+        
+            <div class="content">
+                <div class="breadcrumb-container">
+                    <div class="container">
+                        <ul class="breadcrumb pull-left">
+                            <li><a href="home">Home</a></li>
+                            <li class="active">Catálogo</li>
+                        </ul><!-- /.breadcrumb -->
+                    </div><!-- /.container -->
+                </div><!-- /.breadcrumb-container -->
+        
+                <div class="category page">
+                    <div class="container">
+                        <div class="page-header category-page-header">
+                            <h2 class="page-title">Catalogo de libros</h2>
+                            <p class="page-subtitle">Busca tu titulo favorito y compralo antes que se acabe</p>
+                        </div><!-- /.page-header -->
+        
+        <div class="page-body">
+                            <div class="row">
+                                <!-- ========================================= CONTENT ========================================= -->
+                                <div class="col-sm-8 col-sm-push-4">
+                                    <div class="category-toolbar">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <ul id="myTab" class="nav nav-tabs grid-list-view-buttons" role="tablist">
+                                                    <li role="presentation" class="active"><a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th active"></span></a></li>
+                                                    <li role="presentation"><a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span></a></li>
+                                                </ul><!-- /.nav -->
+                                            </div><!-- /.col -->
+        
+                                            <div class="col-md-2 col-sm-4">
+                                                <select class="selectpicker">
+                                                    <option selected="selected" value="15">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="20">11</option>
+                                                    <option value="30">12</option>
+                                                </select>
+                                            </div><!-- /.col -->
+        
+                                            <div class="col-md-2 col-sm-4">
+                                                <select class="selectpicker">
+                                                    <option selected="selected" value="position:asc">Date</option>
+                                                    <option value="price:asc">Price: Lowest first</option>
+                                                    <option value="price:desc">Price: Highest first</option>
+                                                    <option value="name:asc">Product Name: A to Z</option>
+                                                    <option value="name:desc">Product Name: Z to A</option>
+                                                    <option value="quantity:desc">In stock</option>
+                                                    <option value="reference:asc">Reference: Lowest first</option>
+                                                    <option value="reference:desc">Reference: Highest first</option>
+                                                </select>
+                                            </div><!-- /.col -->
+        
+        
+                                            <div class="col-sm-offset-4 col-md-offset-2 col-md-3 col-md-3 col-sm-6 clearfix">
+                                                <div id="slider-range"></div>
+                                                <p>
+                                                    <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
+                                                </p>                                
+                                            </div><!-- /.col -->
+        
+                                        </div><!-- /.row -->
+                                    </div><!-- /.category-toolbar -->
+        
+                                    <div class="tab-content">
+                                        <div class="tab-pane active  wow fadeInUp" id="grid" role="tabpanel">
+                                            <div class="category-books books grid-view">
+                                                <div class="row" >
+                                                    <div class="col-md-4 col-sm-6" *ngFor="let libro of libros">
+                                                        <div class="book">      
+                                                            <div class="book-cover">
+                                                                <div class="book-inner">
+                                                                    <img src="{{libro.imagenURL}}" width="193" height="261" alt="">
+                                                                    <div class="fade"></div>
+                                                                        <div class="book-price">
+                                                                            <span class="price">{{libro.precio}}</span>
+                                                                        </div><!-- /.book-price -->
+            
+                                                                        <div class="cart animate-effect">
+                                                                            <div class="action">
+                                                                                <a class="add-to-cart" href="" title="Add to Cart">
+                                                                                    <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                                                </a>
+                                                                                <a class="add-to-cart" href="" title="Favourite">
+                                                                                    <i class="icon icon-heart fa fa-heart"></i>
+                                                                                </a>
+                                                                            </div><!-- /.action -->
+                                                                        </div><!-- /.cart -->
+                                                                </div><!-- /.book-inner -->
+                                                            </div><!-- /.book-cover -->
+            
+            
+                                                            <div class="book-details">
+                                                                <h4 class="book-title"><a (click)="goToBookDetail(libro.id)">{{libro.titulo}}</a></h4>
+                                                                <p class="book-author">{{libro.autor.nombre}}</p>
+                                                                <div class="star-rating">
+                                                                    <i class="fa fa-star color"></i>
+                                                                    <i class="fa fa-star color"></i>
+                                                                    <i class="fa fa-star color"></i>
+                                                                    <i class="fa fa-star color"></i>
+                                                                    <i class="fa fa-star "></i>
+                                                                </div><!-- /.star-rating -->
+                                                            </div><!-- /.book-details -->
+                                                        </div><!-- /.book -->
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.category-books -->
+                                        </div><!-- /.tab-pane -->
+
+
+
+
+                                        <div class="tab-pane wow fadeInUp" id="list" role="tabpanel">
+                                                
+
+                                                <div class="featured-book" *ngFor="let libro of libros">
+                                                    <div class="books clearfix">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-5">
+                                                                <div class="book">
+                                                                    
+                                                                    <div class="book-cover">
+                                                                        <img class="img-responsive" alt="" width="193" height="261" src="{{libro.imagenURL}}">
+                                                                        <div class="fade"></div>
+                                                                        <div class="book-price">
+                                                                            <span class="price">$ {{libro.precio}}</span>
+                                                                        </div><!-- /.book-price -->
+                                                                    </div><!-- /.book-cover -->
+                                                                </div><!-- /.book -->
+                                                            </div><!-- /.col -->
+
+                                                            <div class="col-md-8 col-sm-7">
+                                                                <div class="book-details book-details-list-view">
+                                                                    <h3 class="book-title">
+                                                                        <a (click)="goToBookDetail(libro.id)">{{libro.titulo}}</a>
+                                                                    </h3>
+                                                                    <p class="book-author">{{libro.autor.nombre}}</p>
+                                                                    <div class="star-rating">
+                                                                        <i class="fa fa-star color"></i>
+                                                                        <i class="fa fa-star color"></i>
+                                                                        <i class="fa fa-star color"></i>
+                                                                        <i class="fa fa-star color"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </div><!-- /.star-rating -->                                
+                                                                </div><!-- /.book-details -->
+
+                                                                <div class="featured-book-content">
+                                                                    <p class="hidden-sm hidden-md">{{libro.descripcion}}</p>
+
+                                                                </div><!-- /.featured-book-content -->
+                                                                <div class="actions">
+                                                                    <a class="add-to-cart" title="Add to Cart" href=""><i class="icon-plus fa fa-plus-circle"></i></a>
+                                                                    <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
+                                                                </div><!-- /.actions -->
+                                                            </div><!-- /.col -->
+                                                        </div><!-- /.row -->
+                                                    </div><!-- /.books -->
+                                                </div><!-- /.row -->
+
+</div>
+
+
+
+
+
+
+
+
+
+        
+                                    </div><!-- /.tab-content -->
+                                    <ul class="pagination book-pagination">
+                                        <li class="active"><a href="">1</a></li>
+                                        <li><a href="">2</a></li>
+                                        <li><a href="">3</a></li>
+                                        <li><a href="">4</a></li>
+                                        <li><a href="">5</a></li>
+                                    </ul><!-- /.pagination -->
+                                </div><!-- /.col -->
+<!-- ========================================= CONTENT :END ========================================= -->
+        
+<!-- ========================================= SIDEBAR ========================================= -->
+                                <div class="col-sm-4 col-sm-pull-8">
+                                    <aside class="sidebar">
+                                    <!-- ========================================= BOOK CATEGORY ========================================= -->
+                                    <section class="module">
+                                    <header class="module-header">
+                                        <h5 class="module-book-category-title">Categorias </h5>
+                                    </header><!-- /.module-header -->
+        
+                                    <div class="module-body category-module-body">
+                                        <ul class="list-unstyled category-list" >
+                                            <li><a (click)="getAllBook()">Todos</a></li>
+                                            <li *ngFor="let genero of generos"><a (click)="searchGenero(genero)">{{genero.tipo}}</a></li>
+                                        </ul><!-- /.list-unstyled -->
+                                                        </div><!-- /.module-body -->
+                                                    </section><!-- /.module -->
+                                                    <!-- ========================================= BOOK CATEGORY : END ========================================= -->                    </aside><!-- /.sidebar -->
+                                                </div><!-- /.col -->
+                                                <!-- ========================================= SIDEBAR :END ========================================= -->
+                                            </div><!-- /.row -->
+                                        </div><!-- /.page-body -->
+                                    </div><!-- /.container -->
+        
+                                    </div><!-- /.category page -->
+        
+                                <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;"><img src="assets/images/top-scroll.png" alt="" ></a>
+                            </div>
+        
+                            
+                           
+        
+                                            <!-- ============================================================= FOOTER : END ============================================================= -->    </div><!-- /.wrapper -->
