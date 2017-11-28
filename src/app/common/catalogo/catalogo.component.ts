@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class CatalogoComponent implements OnInit {
   router: Router;
-
+  logueado: boolean;
   generos: Array<Genero>;
   libros: Array<Libro>;
   constructor(private _generoListService: GeneroListService,private _libroListService: LibroListService, private _http:Http, router: Router) { this.router=router;}
@@ -24,6 +24,7 @@ export class CatalogoComponent implements OnInit {
       err=>{console.error();},
       ()=>{console.log('libros obtenidos exitosamente');}
     );
+    this.logueado=this.ocultar();
   }
 
   getAllBook(){
@@ -48,6 +49,17 @@ export class CatalogoComponent implements OnInit {
   }z
   public goToBookDetail(id :number){
     this.router.navigate(['/detail',id]);
+  }
+
+  public ocultar(){
+    if(sessionStorage.getItem('email')===null){
+      console.log("hay un logueado");
+      return false;
+    }
+    else{
+      console.log("no hay logueado");
+      return true;
+    }
   }
 
 }

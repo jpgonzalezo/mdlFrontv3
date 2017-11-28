@@ -5,10 +5,12 @@ import {HomeComponent} from './auth/home/home.component';
 import {CatalogoComponent} from './common/catalogo/catalogo.component';
 import {DetailBookComponent} from './common/detail-book/detail-book.component';
 import {SearchDealerComponent} from './common/search-dealer/search-dealer.component';
+import {PerfilComponent} from './auth/perfil/perfil.component';
+import {NotFoundComponent} from './common/not-found/not-found.component'
 
 export const routes:Routes =[
 {
-    path:'', pathMatch: 'full', redirectTo:'login'
+    path:'', pathMatch: 'full', redirectTo:'home'
 },
 {
     path:'login' ,component:LoginComponent
@@ -24,5 +26,11 @@ export const routes:Routes =[
 },
 {
     path: 'dealers',component: SearchDealerComponent
+},
+{
+    path: 'perfil/:tipo/:id',component: PerfilComponent
+},
+{
+    path:'**',component: NotFoundComponent
 }
 ]

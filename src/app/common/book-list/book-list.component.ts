@@ -17,6 +17,8 @@ export class BookListComponent implements OnInit {
   
   libros: Array<Libro>;
   router: Router;
+  logueado: boolean;
+  
   public carouselTile: NgxCarousel;
   public carouselTileItems: Array<Libro>;
   constructor(private _libroListService: LibroListService, router: Router) { 
@@ -43,6 +45,8 @@ export class BookListComponent implements OnInit {
       touch: true,
       easing: 'ease'
     }
+
+    this.logueado=this.ocultar();
   }
   public carouselTileLoad(evt: any) {
     const len = this.libros.length;
@@ -53,6 +57,19 @@ export class BookListComponent implements OnInit {
   public goToBookDetail(id :number){
     this.router.navigate(['/detail',id]);
   }
+
+  public ocultar(){
+    if(sessionStorage.getItem('email')===null){
+      console.log("hay un logueado");
+      return false;
+    }
+    else{
+      console.log("no hay logueado");
+      return true;
+    }
+  }
+
+
 }
 
 

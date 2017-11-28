@@ -1634,7 +1634,7 @@ a:active {
   width: 30;
 }
 .module .module-title {
-  font-size: 36px;
+  font-size: 25px;
   text-transform: uppercase;
   line-height: 30px;
   font-weight: 500;
@@ -2411,7 +2411,7 @@ label a:focus {
   border-bottom: none;
 }
 .page-header .page-title {
-  font-size: 36px;
+  font-size: 25px;
   text-transform: uppercase;
   font-family: 'RobotoBlack';
 }

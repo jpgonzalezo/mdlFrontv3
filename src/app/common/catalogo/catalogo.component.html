@@ -77,7 +77,7 @@
                                                                             <span class="price">{{libro.precio}}</span>
                                                                         </div><!-- /.book-price -->
             
-                                                                        <div class="cart animate-effect">
+                                                                        <div class="cart animate-effect" *ngIf="logueado">
                                                                             <div class="action">
                                                                                 <a class="add-to-cart" href="" title="Add to Cart">
                                                                                     <i class="icon icon-plus fa fa-plus-circle"></i>
@@ -149,7 +149,7 @@
                                                                     <p class="hidden-sm hidden-md">{{libro.descripcion}}</p>
 
                                                                 </div><!-- /.featured-book-content -->
-                                                                <div class="actions">
+                                                                <div class="actions" *ngIf="logueado"> 
                                                                     <a class="add-to-cart" title="Add to Cart" href=""><i class="icon-plus fa fa-plus-circle"></i></a>
                                                                     <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
                                                                 </div><!-- /.actions -->
@@ -158,25 +158,8 @@
                                                     </div><!-- /.books -->
                                                 </div><!-- /.row -->
 
-</div>
-
-
-
-
-
-
-
-
-
-        
+</div>   
                                     </div><!-- /.tab-content -->
-                                    <ul class="pagination book-pagination">
-                                        <li class="active"><a href="">1</a></li>
-                                        <li><a href="">2</a></li>
-                                        <li><a href="">3</a></li>
-                                        <li><a href="">4</a></li>
-                                        <li><a href="">5</a></li>
-                                    </ul><!-- /.pagination -->
                                 </div><!-- /.col -->
 <!-- ========================================= CONTENT :END ========================================= -->
         

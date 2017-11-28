@@ -42,7 +42,12 @@ import {HttpService} from './http.service';
 import {GeneroListService} from './common/catalogo/service/generos-list.service';
 import {DealerListService} from './common/dealer-destacados-list/service/dealer-list.service';
 import {RegionListService} from './common/search-dealer/service/region-list.service';
-import { CartService } from './common/cart/services/cart.service'
+import { CartService } from './common/cart/services/cart.service';
+import { PerfilComponent } from './auth/perfil/perfil.component';
+
+//GUARD CREADOS
+import {LoginGuard} from './guard/login/login.guard';
+import { NotFoundComponent } from './common/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +67,9 @@ import { CartService } from './common/cart/services/cart.service'
     DetailBookComponent,
     FooterComponent,
     SearchDealerComponent,
-    CartComponent
+    CartComponent,
+    PerfilComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +81,16 @@ import { CartService } from './common/cart/services/cart.service'
     RouterModule.forRoot(routes),
     NgxCarouselModule
   ],
-  providers: [LibroListService,BestSellerListService,AuthenticationService,HttpService,GeneroListService,DealerListService,RegionListService, CartService],
+  providers: [LibroListService,
+              BestSellerListService,
+              AuthenticationService,
+              HttpService,
+              GeneroListService,
+              DealerListService,
+              RegionListService, 
+              CartService,
+              LoginGuard
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

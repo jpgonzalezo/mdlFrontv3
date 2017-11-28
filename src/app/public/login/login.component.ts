@@ -25,11 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form : NgForm) {
-
     for(let usuario of this.usuarios){
       if(form.value.username === usuario.correo && form.value.password === usuario.contrasena){
-        localStorage.setItem(form.value.username,form.value.password);
-        this._router.navigate(['/home']);
+        sessionStorage.setItem('email',form.value.username);
+        sessionStorage.setItem('password',form.value.password);
+        this._router.navigate(['/perfil','dealer',usuario.id]);
       }
     }
   }

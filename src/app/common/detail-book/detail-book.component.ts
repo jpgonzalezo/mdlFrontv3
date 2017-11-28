@@ -21,6 +21,7 @@ export class DetailBookComponent implements OnInit,OnDestroy {
   private sub:any;
   libros: Libro[];
   libroID: Libro;
+  logueado: boolean;
 
   constructor(private route: ActivatedRoute,private _libroListService: LibroListService, private _cartService: CartService){}
 
@@ -43,6 +44,7 @@ export class DetailBookComponent implements OnInit,OnDestroy {
       err=>{console.error();},
       ()=>{console.log('libros obtenidos exitosamente');}
     );
+    this.logueado=this.ocultar();;
   }
 
   public addProductToCart(product: Libro): void {
@@ -64,6 +66,17 @@ export class DetailBookComponent implements OnInit,OnDestroy {
                       });
       sub.unsubscribe();
     });
+  }
+
+  public ocultar(){
+    if(sessionStorage.getItem('email')===null){
+      console.log("hay un logueado");
+      return false;
+    }
+    else{
+      console.log("no hay logueado");
+      return true;
+    }
   }
 
   ngOnDestroy() {

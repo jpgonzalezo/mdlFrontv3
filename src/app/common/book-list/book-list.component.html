@@ -33,7 +33,7 @@
                         <span class="price"> ${{libro.precio}}</span>
                       </div>
 
-                      <div class="cart animate-effect">
+                      <div class="cart animate-effect" *ngIf="logueado">
                         <div class="action">
                           <a class="add-to-cart" href="detail.html" title="Add to Cart">
                             <i class="icon icon-plus fa fa-plus-circle"></i>

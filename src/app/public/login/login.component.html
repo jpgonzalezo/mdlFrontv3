@@ -1,20 +1,18 @@
 
 <section class="container">
   <div class="login">
-    <h1>Login Mano de Libros</h1>
+    <h3>Iniciar Sesión</h3>
+    <h5>Inicia sesión como dealer o editorial</h5>
 <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-<p><input type="text" name="username" id="username" ngModel></p>
-<p><input type="password" name="password" id="password" ngModel></p>
+<p><input type="text" name="username" placeholder="Ingresa tu email" id="username" ngModel></p>
+<p><input type="password" name="password" placeholder="Ingresa tu contraseña" id="password" ngModel></p>
 <p><button type="submit">Login</button></p>
 <p class="remember_me">
     <label>
       <input type="checkbox" name="remember_me" id="remember_me">
-      Remember me on this computer
+      Recuerdame en este computador
     </label>
   </p>
 </form>
 </div>
-<div class="login-help">
-    <p>Forgot your password? <a href="">Click here to reset it</a>.</p>
-  </div>
 </section>
