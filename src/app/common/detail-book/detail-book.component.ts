@@ -22,6 +22,8 @@ export class DetailBookComponent implements OnInit,OnDestroy {
   libros: Libro[];
   libroID: Libro;
   logueado: boolean;
+  cont:number;
+  
 
   constructor(private route: ActivatedRoute,private _libroListService: LibroListService, private _cartService: CartService){}
 
@@ -44,7 +46,7 @@ export class DetailBookComponent implements OnInit,OnDestroy {
       err=>{console.error();},
       ()=>{console.log('libros obtenidos exitosamente');}
     );
-    this.logueado=this.ocultar();;
+    this.logueado=this.ocultar();  
   }
 
   public addProductToCart(product: Libro): void {
@@ -76,6 +78,14 @@ export class DetailBookComponent implements OnInit,OnDestroy {
     else{
       console.log("no hay logueado");
       return true;
+    }
+  }
+
+  public recargar(){
+    
+    if(this.cont==1){
+      location.reload(true);
+      this.cont=0;
     }
   }
 

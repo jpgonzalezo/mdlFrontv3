@@ -1,47 +1,45 @@
 <div class="wrapper">
+    <div class="content">
+        <div class="breadcrumb-container">
+            <div class="container">
+                <ul class="breadcrumb pull-left">
+                    <li><a href="home">Home</a></li>
+                    <li class="active">Dealers</li>
+                </ul><!-- /.breadcrumb -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb-container -->
     
-        <div class="content">
-            <div class="breadcrumb-container">
-                <div class="container">
-                    <ul class="breadcrumb pull-left">
-                        <li><a href="home">Home</a></li>
-                        <li class="active">Dealers</li>
-                    </ul><!-- /.breadcrumb -->
-                </div><!-- /.container -->
-            </div><!-- /.breadcrumb-container -->
+        <div class="category page">
+            <div class="container">
+                <div class="page-header category-page-header">
+                    <h2 class="page-title">Buscador de Dealers</h2>
+                    <p class="page-subtitle">Busca tu dealers mas cercanos y aprovecha el catálogo que tiene para ti</p>
+                </div><!-- /.page-header -->
     
-            <div class="category page">
-                <div class="container">
-                    <div class="page-header category-page-header">
-                        <h2 class="page-title">Buscador de Dealers</h2>
-                        <p class="page-subtitle">Busca tu dealers mas cercanos y aprovecha el catálogo que tiene para ti</p>
-                    </div><!-- /.page-header -->
+            <div class="page-body">
+                <div class="row">
+                <!-- ========================================= CONTENT ========================================= -->
+                    <div class="col-sm-8 col-sm-push-4">
+                        <div class="category-toolbar">
+                            <div class="row">
+                                    <div class="col-md-2 col-sm-4">
+                                        <select (change)="onChange($event.target.value)" style="width:120px;  background-color: #21B68E;border-color: #21B68E;height:50px;color:aliceblue;font-size:12pt">
+                                            <option selected="selected"  value="Ciudad" style="color:aliceblue">Ciudad</option>
+                                            <option value="{{ciudad.nombre}}" (click)="getDealerCiudad()" style="color:aliceblue" *ngFor="let ciudad of ciudades">{{ciudad.nombre}}</option>    
+                                        </select>
+                                    </div><!-- /.col --> 
+                                <div class="col-md-3 col-sm-4">
+                                    <ul id="myTab" class="nav nav-tabs grid-list-view-buttons" role="tablist">
+                                        <li role="presentation" class="active"><a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th active"></span></a></li>
+                                        <li role="presentation"><a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span></a></li>
+                                    </ul><!-- /.nav -->
+                                </div><!-- /.col -->
     
-    <div class="page-body">
-                        <div class="row">
-                            <!-- ========================================= CONTENT ========================================= -->
-                            <div class="col-sm-8 col-sm-push-4">
-                                <div class="category-toolbar">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-4">
-                                            <ul id="myTab" class="nav nav-tabs grid-list-view-buttons" role="tablist">
-                                                <li role="presentation" class="active"><a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th active"></span></a></li>
-                                                <li role="presentation"><a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span></a></li>
-                                            </ul><!-- /.nav -->
-                                        </div><!-- /.col -->
-    
-                                        <div class="col-md-2 col-sm-4">
-                                            <select class="selectpicker">
-                                                <option selected="selected" value="15">9</option>
-                                                <option value="10">10</option>
-                                                <option value="20">11</option>
-                                                <option value="30">12</option>
-                                            </select>
-                                        </div><!-- /.col -->
 
-    
-                                    </div><!-- /.row -->
-                                </div><!-- /.category-toolbar -->
+
+                                
+                            </div><!-- /.row -->
+                    </div><!-- /.category-toolbar -->
     
                                 <div class="tab-content">
                                     <div class="tab-pane active  wow fadeInUp" id="grid" role="tabpanel">
@@ -91,28 +89,7 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 </div><!-- /.tab-content -->
-                                <ul class="pagination book-pagination">
-                                    <li class="active"><a href="">1</a></li>
-                                    <li><a href="">2</a></li>
-                                    <li><a href="">3</a></li>
-                                    <li><a href="">4</a></li>
-                                    <li><a href="">5</a></li>
-                                </ul><!-- /.pagination -->
                             </div><!-- /.col -->
 <!-- ========================================= CONTENT :END ========================================= -->
     
@@ -121,19 +98,24 @@
                                 <aside class="sidebar">
                                 <!-- ========================================= BOOK CATEGORY ========================================= -->
                                 <section class="module">
-                                <header class="module-header">
-                                    <h5 class="module-book-category-title">Regiones </h5>
-                                </header><!-- /.module-header -->
+                                    <header class="module-header">
+                                        <h5 class="module-book-category-title">Regiones </h5>
+                                    </header><!-- /.module-header -->
     
-                                <div class="module-body category-module-body">
-                                    <ul class="list-unstyled category-list" >
-                                        <li><a (click)="getAllDealer()">Todos</a></li>
-                                        <li *ngFor="let region of regiones"><a (click)="searchRegion(region)">{{region.nombre}}</a></li>
-                                    </ul><!-- /.list-unstyled -->
-                                                    </div><!-- /.module-body -->
-                                                </section><!-- /.module -->
-                                                <!-- ========================================= BOOK CATEGORY : END ========================================= -->                    </aside><!-- /.sidebar -->
-                                            </div><!-- /.col -->
+                                    <div class="module-body category-module-body">
+                                        <ul class="list-unstyled category-list" >
+                                            <li><a (click)="getAllDealer()">Todos</a></li>
+                                            <li *ngFor="let region of regiones"><a (click)="searchRegion(region)">{{region.nombre}}</a></li>
+                                        </ul><!-- /.list-unstyled -->
+                                    </div><!-- /.module-body -->
+                                </section><!-- /.module -->
+
+
+
+                                                <!-- ========================================= BOOK CATEGORY : END ========================================= -->                    
+                                </aside><!-- /.sidebar -->
+                            </div><!-- /.col -->
+
                                             <!-- ========================================= SIDEBAR :END ========================================= -->
                                         </div><!-- /.row -->
                                     </div><!-- /.page-body -->
@@ -141,7 +123,7 @@
     
                                 </div><!-- /.category page -->
     
-                            <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;"><img src="assets/images/top-scroll.png" alt="" ></a>
+                            <a class="scrollup hidden-xs hidden-sm" href="" style="display: none;"><img src="assets/images/top-scroll.png" alt="" ></a>
                         </div>
     
                         

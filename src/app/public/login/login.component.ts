@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('email',form.value.username);
         sessionStorage.setItem('password',form.value.password);
         this._router.navigate(['/perfil','dealer',usuario.id]);
+        location.reload(true);
       }
     }
   }

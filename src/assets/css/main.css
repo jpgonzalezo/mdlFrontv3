@@ -1627,7 +1627,7 @@ a:active {
   -moz-box-shadow: 0 5px rgba(0, 0, 0, 0.1) inset;
   -webkit-box-shadow: 0 5px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 5px rgba(0, 0, 0, 0.1) inset;
-  padding: 10px 15px;
+  padding: 10px 30px;
 }
 
 .modeule-header{
@@ -1649,7 +1649,7 @@ a:active {
 }
 .category-module-body {
   background-color: #ece8e4;
-  padding: 30px;
+  padding: 50px;
   -moz-box-shadow: 0 4px rgba(0, 0, 0, 0.13);
   -webkit-box-shadow: 0 4px rgba(0, 0, 0, 0.13);
   box-shadow: 0 4px rgba(0, 0, 0, 0.13);
