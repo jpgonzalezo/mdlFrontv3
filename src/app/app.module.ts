@@ -24,6 +24,7 @@ import { DetalleLibroComponent } from './common/detalle-libro/detalle-libro.comp
 import { DetailBookComponent } from './common/detail-book/detail-book.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { SearchDealerComponent } from './common/search-dealer/search-dealer.component';
+import { CartComponent } from './common/cart/cart.component';
 
 
 //MODULOS EXTERNOS
@@ -40,7 +41,8 @@ import {AuthenticationService} from './public/login/service/authentication.servi
 import {HttpService} from './http.service';
 import {GeneroListService} from './common/catalogo/service/generos-list.service';
 import {DealerListService} from './common/dealer-destacados-list/service/dealer-list.service';
-import {RegionListService} from './common/search-dealer/service/region-list.service'
+import {RegionListService} from './common/search-dealer/service/region-list.service';
+import { CartService } from './common/cart/services/cart.service'
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import {RegionListService} from './common/search-dealer/service/region-list.serv
     DetalleLibroComponent,
     DetailBookComponent,
     FooterComponent,
-    SearchDealerComponent
+    SearchDealerComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,7 @@ import {RegionListService} from './common/search-dealer/service/region-list.serv
     RouterModule.forRoot(routes),
     NgxCarouselModule
   ],
-  providers: [LibroListService,BestSellerListService,AuthenticationService,HttpService,GeneroListService,DealerListService,RegionListService],
+  providers: [LibroListService,BestSellerListService,AuthenticationService,HttpService,GeneroListService,DealerListService,RegionListService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

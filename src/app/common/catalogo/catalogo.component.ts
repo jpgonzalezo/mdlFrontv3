@@ -45,7 +45,7 @@ export class CatalogoComponent implements OnInit {
     err=>{console.error();},
     ()=>{console.log("filtro genero listo");}
     );
-  }
+  }z
   public goToBookDetail(id :number){
     this.router.navigate(['/detail',id]);
   }
