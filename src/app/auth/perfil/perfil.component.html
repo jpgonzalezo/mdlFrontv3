@@ -13,8 +13,9 @@
       <div class="primary-block clearfix">    
         <div class="col-sm-8">
           <div class="book-detail-header">
-            <h2 class="book-title">{{dealer.nombre}}</h2>
-            <p class="book-author">De <span class="book-author-name">{{dealer.direccion.ciudad.nombre}}</span></p>  
+            <h2 class="book-title" *ngIf="isDealer">{{dealer.nombre}}</h2>
+            <h2 class="book-title" *ngIf="isEditorial">{{editorial.nombre}}</h2>
+            <p class="book-author" *ngIf="isDealer">De <span class="book-author-name">{{dealer.direccion.ciudad.nombre}}</span></p>  
         </div><!-- /.book-detail-header -->
       
         <div class="book-detail-body">
@@ -30,21 +31,24 @@
       <div class="book-additional-details">
       <!-- Nav tabs -->
         <ul class="nav nav-tabs book-detail-tab">
-          <li class="active" role="presentation"><a href="#more" data-toggle="tab">Más acerca del Dealer</a></li>
-          <li role="presentation"><a href="#product-details" data-toggle="tab">Catálgo</a></li>
+            <li class="active" role="presentation" *ngIf="isEditorial"><a href="#more" data-toggle="tab">Más acerca de la Editorial</a></li>
+          <li class="active" role="presentation" *ngIf="isDealer"><a href="#more" data-toggle="tab">Más acerca del Dealer</a></li>
+          <li role="presentation" *ngIf="isDealer"><a href="#product-details" data-toggle="tab">Catálgo</a></li>
         </ul><!-- /.nav -->
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane active" id="more" role="tabpanel">
           <ul class="list-unstyled list-kybook uppercase">
-            <li>Nombre: {{dealer.nombre}}</li>
-            <li>Fono: {{dealer.fono}}</li>
-            <li>Correo: {{dealer.correo}}</li>
-            <li>Direción: {{dealer.direccion.calle}}, {{dealer.direccion.numero}}, {{dealer.direccion.ciudad.nombre}}  </li>               
+            <li *ngIf="isEditorial">Nombre: {{editorial.nombre}}</li>
+            <li *ngIf="isEditorial">Correo: {{editorial.correo}}</li>
+            <li *ngIf="isDealer">Nombre: {{dealer.nombre}}</li>
+            <li *ngIf="isDealer">Fono: {{dealer.fono}}</li>
+            <li *ngIf="isDealer">Correo: {{dealer.correo}}</li>
+            <li *ngIf="isDealer">Direción: {{dealer.direccion.calle}}, {{dealer.direccion.numero}}, {{dealer.direccion.ciudad.nombre}}  </li>               
           </ul>
         </div><!-- /.tab-pane -->
   
-        <div class="tab-pane" id="product-details" role="tabpanel">
+        <div class="tab-pane" id="product-details" role="tabpanel" *ngIf="isDealer">
 
 
             <div class="tab-pane wow fadeInUp" id="list" role="tabpanel">
@@ -84,7 +88,7 @@
                                         <p class="hidden-sm hidden-md">{{libro.descripcion}}</p>
 
                                     </div><!-- /.featured-book-content -->
-                                    <div class="actions">
+                                    <div class="actions" *ngIf="logueado">
                                         <button type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
                                         <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
                                     </div><!-- /.actions -->

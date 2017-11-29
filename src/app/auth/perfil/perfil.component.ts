@@ -5,7 +5,7 @@ import {Editorial} from '../../common/editorial-list/model/editorial.model';
 import {DealerListService} from '../../common/dealer-destacados-list/service/dealer-list.service';
 import {EditorialListService} from '../../common/editorial-list/service/editorial-list.service';
 import {Libro} from '../../common/book-list/models/book.model';
-
+import {Router} from '@angular/router';
 
 
 import{Injectable} from '@angular/core';
@@ -20,6 +20,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit, OnDestroy {
+  router: Router;
   id:number;
   idCatalogo:number;
   tipo: number;
@@ -28,13 +29,21 @@ export class PerfilComponent implements OnInit, OnDestroy {
   editoriales: Array<Editorial>;
   dealers: Array<Dealer>;
   private sub:any;
+  libros: Array<Libro>;
+  aux:Array<any>;
+  isDealer: boolean;
+  isEditorial: boolean;
+  logueado: boolean;
   constructor(private route: ActivatedRoute,
               private _editorialListService: EditorialListService,
               private _dealerListService: DealerListService,
-              private _http: Http) { }
+              private _http: Http,
+              router: Router) { this.router=router; }
 
   public buscarEditorial(elemento:Editorial[]){
     if(this.tipo==1){
+      this.isEditorial=true;
+      this.isDealer=false;
       elemento.forEach(element => {
         if(element.id==this.id){
           this.editorial=element;
@@ -47,10 +56,14 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   public buscarDealer(elemento:Dealer[]){
     if(this.tipo==0){
+      this.isEditorial=false;
+      this.isDealer=true;
+      console.log(this.isDealer);
       elemento.forEach(element => {
         if(element.id==this.id){
           this.idCatalogo=this.id;
           this.dealer=element;
+          this.getCatalogo();
         }   
       });
       console.log("dealer perfil");
@@ -59,14 +72,32 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   public getCatalogo(){
-        //AQUI VA URL DEL SERVICIO QUE ENTREGA LA LISTA DE LIBROS
-        const url= Config.API_SERVER_URL_LIBROS;
-        const headers= new Headers({'Content-Type':'aplication/json'});
-        const options= new RequestOptions({headers:headers});
-        return this._http.get(url,options).map((response)=> {console.log(response); return response.json()});
+    const url=`http://localhost:8000/dealers/${this.idCatalogo}/catalogo`;
+    const headers= new Headers({'Content-Type':'aplication/json'});
+    const options= new RequestOptions({headers:headers});
+    return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
+    (data: Libro[])=>{this.libros=data;console.log(this.libros);},
+    err=>{console.error();},
+    ()=>{console.log("catalogo exitoso");console.log(this.libros);}
+    );}
+
+  public goToBookDetail(id :number){
+    this.router.navigate(['/detail',id]);
+  }
+
+  public ocultar(){
+    if(sessionStorage.getItem('email')===null){
+      console.log("hay un logueado");
+      return false;
+    }
+    else{
+      console.log("no hay logueado");
+      return true;
+    }
   }
 
   ngOnInit() {
+    this.logueado=this.ocultar();
     this.sub=this.route.params.subscribe(
       params=>{
         this.id=+params['id'];
