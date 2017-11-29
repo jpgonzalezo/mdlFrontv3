@@ -5,6 +5,7 @@ import {HomeComponent} from './auth/home/home.component';
 import {CatalogoComponent} from './common/catalogo/catalogo.component';
 import {DetailBookComponent} from './common/detail-book/detail-book.component';
 import {SearchDealerComponent} from './common/search-dealer/search-dealer.component';
+import { CartComponent } from 'app/common/cart/cart.component';
 
 export const routes:Routes =[
 {
@@ -24,5 +25,8 @@ export const routes:Routes =[
 },
 {
     path: 'dealers',component: SearchDealerComponent
+},
+{
+    path: 'cart',component: CartComponent
 }
 ]

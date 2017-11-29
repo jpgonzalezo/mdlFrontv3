@@ -79,9 +79,7 @@
             
                                                                         <div class="cart animate-effect">
                                                                             <div class="action">
-                                                                                <a class="add-to-cart" href="" title="Add to Cart">
-                                                                                    <i class="icon icon-plus fa fa-plus-circle"></i>
-                                                                                </a>
+                                                                                <button type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
                                                                                 <a class="add-to-cart" href="" title="Favourite">
                                                                                     <i class="icon icon-heart fa fa-heart"></i>
                                                                                 </a>
@@ -150,7 +148,7 @@
 
                                                                 </div><!-- /.featured-book-content -->
                                                                 <div class="actions">
-                                                                    <a class="add-to-cart" title="Add to Cart" href=""><i class="icon-plus fa fa-plus-circle"></i></a>
+                                                                    <button type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
                                                                     <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
                                                                 </div><!-- /.actions -->
                                                             </div><!-- /.col -->

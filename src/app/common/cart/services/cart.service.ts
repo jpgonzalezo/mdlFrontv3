@@ -15,8 +15,7 @@ export class CartService {
   private subscribers: Array<Observer<Cart>> = new Array<Observer<Cart>>();
   private products: Libro[];
 
-  public constructor(/*private storageService: StorageService,*/
-                     private _libroListService: LibroListService) {
+  public constructor(private _libroListService: LibroListService) {
     this.storage = localStorage;
     this._libroListService.getAll().subscribe((products) => this.products = products);
 
@@ -44,9 +43,6 @@ export class CartService {
 
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
-    if (cart.items.length === 0) {
-      cart.deliveryOptionId = undefined;
-    }
 
     this.calculateCart(cart);
     this.save(cart);
@@ -64,7 +60,6 @@ export class CartService {
     cart.itemsTotal = cart.items
                           .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).precio)
                           .reduce((previous, current) => previous + current, 0);
-    cart.grossTotal = cart.itemsTotal;
   }
 
   private retrieve(): Cart {
