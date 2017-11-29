@@ -1,3 +1,92 @@
-<p>
-  cart works!
-</p>
+<div class="content">
+  <div class="breadcrumb-container">
+      <div class="container">
+          <ul class="breadcrumb pull-left">
+              <li><a href="home.html">Home</a></li>
+              <li class="active">Carrito</li>
+          </ul><!-- /.breadcrumb -->  
+
+      </div><!-- /.container -->
+  </div><!-- /.breadcrumb-container -->
+
+  <div class="cart page">
+      <div class="container">
+          <div class="page-header">
+              <h2 class="page-title">Carrito de compras</h2>
+          </div><!-- /.page-header -->
+
+          <div class="page-body">
+              <div class="order-detail table-responsive">
+                  <table class="table table-cart cart-detail " >
+                      <thead>
+                          <tr>
+                              <th class="dark">Título</th>
+                              <th>Precio Unitario</th>
+                              <th class="dark text-center">Cantidad</th>
+                              <th>Subtotal</th>
+                              <th class="dark"></th>
+                          </tr>
+                      </thead><!-- /thead -->                
+                      <tbody class="cart-body-content" >
+                          <tr class="cart-book" *ngFor="let item of cartItems">
+                              <td>
+                                  <div class="media">
+                                      <a href="" class="cart-thumbnail-image media-left">
+                                          <div class="book-cover small-book-cover">
+                                              <img src="{{item.product.imagenURL}}" alt="" class="media-object">
+                                              <div class="fade"></div>
+                                          </div>
+                                      </a>
+                                      <div class="media-body">
+                                          <h3 class="media-heading"><a href="">{{item.product.titulo}}</a></h3>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <span class="price">${{item.product.precio}}</span>
+                              </td>
+                              <td class="quantity dark text-center">            
+                                <div class="quant-input">
+                                    <div class="arrows">
+                                        <div class="arrow plus gradient" (click)="addProductToCart(item.product)"><span class="ir"></span></div>
+                                        <div class="arrow minus gradient" (click)="removeProductFromCart(item.product)"><span class="ir"></span></div>
+                                    </div>
+                                    <input class="txt-quantity" type="text" value="{{item.quantity}}"/>
+                                </div>              
+                                </td>  
+                              <td>
+                                  <span class="price subtotal">${{item.totalCost}}</span>
+                              </td>
+                              <td>
+                                  <!--<button class="btn btn-primary-light btn-flat" type="button" (click)="removeProductFromCart(item.product)">X</button>-->
+                              </td>
+                          </tr>
+                      </tbody><!-- /.cart-body-content -->
+                  </table><!-- /.table -->
+              </div><!-- /.order-detail -->
+              <div class="row">
+
+
+                  <div class="col-xs-12 col-sm-8 center-sm">
+                      <div class="table-responsive">
+                          <table class="table table-cart">
+                              <tfoot>
+                                  <tr>
+                                      <td ><i class="icon-chevron fa fa-chevron-right"></i>&nbsp;Total:</td>
+                                      <td >${{(cart | async).grossTotal}}</td>
+                                  </tr>
+                              </tfoot><!-- /tfoot -->
+                          </table><!-- /table -->
+                      </div><!-- /table-responsive -->
+                  </div><!-- /.col -->
+                  <div class="col-md-12">
+                      <a href="checkout.html" class="pull-right btn btn-primary btn-checkout">Continuar a Checkout &nbsp;<i class="fa fa-chevron-right"></i></a>
+                      <button type="button" class="pull-right btn btn-primary btn-checkout" (click)="emptyCart()"
+                      [attr.disabled]="itemCount === 0 ? true : null">Vaciar Carrito</button>
+                  </div>
+
+              </div><!-- /.row -->
+          </div><!-- /.page-body -->
+      </div><!-- /.container -->
+  </div><!-- /.cart page -->            <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;"><img src="assets/images/top-scroll.png" alt="" ></a>
+</div>
