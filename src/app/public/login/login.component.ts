@@ -4,6 +4,8 @@ import {Dealer} from '../../common/dealer-destacados-list/model/dealer.model';
 import {SessionStorageService} from 'ngx-webstorage'
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {Editorial} from '../../common/editorial-list/model/editorial.model';
+import {EditorialListService} from '../../common/editorial-list/service/editorial-list.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,10 @@ import {NgForm} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   usuarios: Array<Dealer>;
+  editoriales: Array<Editorial>;
   constructor(public _dealerList: DealerListService,
               public _locker: SessionStorageService,
+              public _editorialList: EditorialListService,
               public _router: Router) { }
 
   ngOnInit() {
@@ -22,6 +26,11 @@ export class LoginComponent implements OnInit {
       err=>{console.error();},
       ()=>{console.log('libros obtenidos exitosamente');}
     );
+    this._editorialList.getAll().subscribe(
+      (data: Editorial[])=>{this.editoriales=data;},
+      err=>{console.error();},
+      ()=>{}
+    );
   }
 
   onSubmit(form : NgForm) {
@@ -29,7 +38,17 @@ export class LoginComponent implements OnInit {
       if(form.value.username === usuario.correo && form.value.password === usuario.contrasena){
         sessionStorage.setItem('email',form.value.username);
         sessionStorage.setItem('password',form.value.password);
-        this._router.navigate(['/perfil','dealer',usuario.id]);
+        sessionStorage.setItem('tipo','0');
+        this._router.navigate(['/perfil','0',usuario.id]);
+        location.reload(true);
+      }
+    }
+    for(let editorial of this.editoriales){
+      if(form.value.username === editorial.correo && form.value.password === editorial.contrasena){
+        sessionStorage.setItem('email',form.value.username);
+        sessionStorage.setItem('password',form.value.password);
+        sessionStorage.setItem('tipo','1');
+        this._router.navigate(['/perfil','1',editorial.id]);
         location.reload(true);
       }
     }

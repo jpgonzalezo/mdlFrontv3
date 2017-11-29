@@ -21,6 +21,8 @@
                       <thead>
                           <tr>
                               <th class="dark">Título</th>
+                              <th>Nombre lector</th>
+                              <th class="dark">Correo lector</th>
                               <th>Precio Unitario</th>
                               <th class="dark text-center">Cantidad</th>
                               <th>Subtotal</th>
@@ -38,10 +40,19 @@
                                           </div>
                                       </a>
                                       <div class="media-body">
-                                          <h3 class="media-heading"><a href="">{{item.product.titulo}}</a></h3>
+                                          <h4 class="media-heading"><a href="">{{item.product.titulo}}</a></h4>
                                       </div>
                                   </div>
                               </td>
+
+                              <td>
+                                  <input type="text" size="10">
+                              </td>
+
+                              <td>
+                                    <input type="text" size="10">
+                                </td>
+
                               <td>
                                   <span class="price">${{item.product.precio}}</span>
                               </td>

@@ -5,4 +5,5 @@ export const Config = {
     API_SERVER_URL_DEALERS: 'http://localhost:8000/dealers/todos',
     API_SERVER_URL_REGIONES: 'http://localhost:8000/regiones/todas',
     API_SERVER_URL_CIUDADES: 'http://localhost:8000/ciudades/region/1',
+    API_SERVER_URL_EDITORIALES: 'http://localhost:8000/editoriales/todas'
   };

@@ -32,9 +32,9 @@ export const routes:Routes =[
     path: 'perfil/:tipo/:id',component: PerfilComponent
 },
 {
-    path:'**',component: NotFoundComponent
+    path: 'cart',component: CartComponent
 },
 {
-    path: 'cart',component: CartComponent
+    path:'**',component: NotFoundComponent
 }
 ]

@@ -25,6 +25,7 @@ import { DetailBookComponent } from './common/detail-book/detail-book.component'
 import { FooterComponent } from './common/footer/footer.component';
 import { SearchDealerComponent } from './common/search-dealer/search-dealer.component';
 import { CartComponent } from './common/cart/cart.component';
+import { NotFoundComponent } from './common/not-found/not-found.component';
 
 
 //MODULOS EXTERNOS
@@ -44,10 +45,11 @@ import {DealerListService} from './common/dealer-destacados-list/service/dealer-
 import {RegionListService} from './common/search-dealer/service/region-list.service';
 import { CartService } from './common/cart/services/cart.service';
 import { PerfilComponent } from './auth/perfil/perfil.component';
+import {EditorialListService} from './common/editorial-list/service/editorial-list.service';
 
 //GUARD CREADOS
 import {LoginGuard} from './guard/login/login.guard';
-import { NotFoundComponent } from './common/not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -89,6 +91,7 @@ import { NotFoundComponent } from './common/not-found/not-found.component';
               DealerListService,
               RegionListService, 
               CartService,
+              EditorialListService,
               LoginGuard
             ],
   bootstrap: [AppComponent]
