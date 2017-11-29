@@ -1,3 +1,111 @@
-<p>
-  perfil works!
-</p>
+<div class="content">
+  <div class="breadcrumb-container">
+    <div class="container">
+      <ul class="breadcrumb pull-left">
+        <li><a href="home">Home</a></li>
+        <li><a href="">Perfil</a></li>
+      </ul><!-- /.breadcrumb -->
+    </div><!-- /.container -->
+  </div><!-- /.breadcrumb-container -->
+      
+  <div class="book-detail page">
+    <div class="container">
+      <div class="primary-block clearfix">    
+        <div class="col-sm-8">
+          <div class="book-detail-header">
+            <h2 class="book-title">{{dealer.nombre}}</h2>
+            <p class="book-author">De <span class="book-author-name">{{dealer.direccion.ciudad.nombre}}</span></p>  
+        </div><!-- /.book-detail-header -->
+      
+        <div class="book-detail-body">
+          <div class="product-description">
+            <h3>Presentación</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique nisi nunc, nec tincidunt sapien venenatis vitae. Aenean tristique sapien justo, iaculis faucibus elit consectetur varius. Nunc euismod urna dui, eu euismod sem placerat id. Donec imperdiet lacinia eros, non maximus leo aliquet id. Aliquam pharetra consequat lorem, sit amet placerat tellus iaculis vel. Maecenas molestie mollis dolor, nec dignissim quam vehicula id. Vivamus turpis dolor, ultrices eget neque vitae, tristique imperdiet magna. Duis vitae volutpat nulla, ac semper mauris. Integer at fringilla orci. Praesent sagittis aliquam finibus. Quisque lobortis, urna vitae auctor ullamcorper, dolor neque tempor nibh, eget luctus diam quam ac augue. Vivamus tempor leo tincidunt odio cursus, eu convallis sapien varius. Quisque mattis at est in dignissim. Sed scelerisque metus vitae nunc consequat lacinia. Etiam nec suscipit nisi, quis mattis enim. Proin dictum, odio non accumsan laoreet, dui elit luctus metus, vel mollis tellus nulla nec massa. Vivamus et elit pharetra, commodo lectus ullamcorper, ullamcorper massa. Curabitur dapibus leo est, ac auctor nisi tincidunt vel. Suspendisse accumsan egestas dui ut consectetur. Aenean varius nisi sit amet nisl sagittis pretium. Pellentesque ac arcu ultricies, venenatis nisi non, fringilla augue. Vestibulum malesuada sem at commodo rhoncus. Proin sed urna elementum, facilisis mi a, ornare sem. Curabitur convallis sapien in tempor fermentum.</p>
+          </div><!-- /.product-description --> 
+        </div><!-- /.book-detail-body -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+      
+    <div class="tab-holder clearfix">
+      <div class="book-additional-details">
+      <!-- Nav tabs -->
+        <ul class="nav nav-tabs book-detail-tab">
+          <li class="active" role="presentation"><a href="#more" data-toggle="tab">Más acerca del Dealer</a></li>
+          <li role="presentation"><a href="#product-details" data-toggle="tab">Catálgo</a></li>
+        </ul><!-- /.nav -->
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="more" role="tabpanel">
+          <ul class="list-unstyled list-kybook uppercase">
+            <li>Nombre: {{dealer.nombre}}</li>
+            <li>Fono: {{dealer.fono}}</li>
+            <li>Correo: {{dealer.correo}}</li>
+            <li>Direción: {{dealer.direccion.calle}}, {{dealer.direccion.numero}}, {{dealer.direccion.ciudad.nombre}}  </li>               
+          </ul>
+        </div><!-- /.tab-pane -->
+  
+        <div class="tab-pane" id="product-details" role="tabpanel">
+
+
+            <div class="tab-pane wow fadeInUp" id="list" role="tabpanel">
+                
+                    <div class="featured-book" *ngFor="let libro of libros">
+                        <div class="books clearfix">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-5">
+                                    <div class="book">
+                                        
+                                        <div class="book-cover">
+                                            <img class="img-responsive" alt="" width="193" height="261" src="{{libro.imagenURL}}">
+                                            <div class="fade"></div>
+                                            <div class="book-price">
+                                                <span class="price">$ {{libro.precio}}</span>
+                                            </div><!-- /.book-price -->
+                                        </div><!-- /.book-cover -->
+                                    </div><!-- /.book -->
+                                </div><!-- /.col -->
+
+                                <div class="col-md-8 col-sm-7">
+                                    <div class="book-details book-details-list-view">
+                                        <h3 class="book-title">
+                                            <a (click)="goToBookDetail(libro.id)">{{libro.titulo}}</a>
+                                        </h3>
+                                        <p class="book-author">{{libro.autor.nombre}}</p>
+                                        <div class="star-rating">
+                                            <i class="fa fa-star color"></i>
+                                            <i class="fa fa-star color"></i>
+                                            <i class="fa fa-star color"></i>
+                                            <i class="fa fa-star color"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div><!-- /.star-rating -->                                
+                                    </div><!-- /.book-details -->
+
+                                    <div class="featured-book-content">
+                                        <p class="hidden-sm hidden-md">{{libro.descripcion}}</p>
+
+                                    </div><!-- /.featured-book-content -->
+                                    <div class="actions">
+                                        <button type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
+                                        <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
+                                    </div><!-- /.actions -->
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- /.books -->
+                    </div><!-- /.row -->
+
+</div>   
+
+
+
+
+
+
+
+
+
+
+        </div>
+    
+      </div><!-- /.tab-content -->
+    </div><!-- /.book-additional-details -->
+  </div><!-- /.col -->

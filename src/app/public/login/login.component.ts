@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('email',form.value.username);
         sessionStorage.setItem('password',form.value.password);
         sessionStorage.setItem('tipo','0');
+        sessionStorage.setItem('id',usuario.id.toString());
         this._router.navigate(['/perfil','0',usuario.id]);
         location.reload(true);
       }
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('email',form.value.username);
         sessionStorage.setItem('password',form.value.password);
         sessionStorage.setItem('tipo','1');
+        sessionStorage.setItem('id',editorial.id.toString());
         this._router.navigate(['/perfil','1',editorial.id]);
         location.reload(true);
       }

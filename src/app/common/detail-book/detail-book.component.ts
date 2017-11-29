@@ -21,7 +21,9 @@ export class DetailBookComponent implements OnInit,OnDestroy {
   cont:number;
   
 
-  constructor(private route: ActivatedRoute,private _libroListService: LibroListService, private _cartService: CartService){}
+  constructor(private route: ActivatedRoute,
+              private _libroListService: LibroListService, 
+              private _cartService: CartService){}
 
   public buscarLibro(elemento:Libro[]){
     elemento.forEach(element => {

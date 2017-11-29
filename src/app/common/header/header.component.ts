@@ -9,15 +9,21 @@ import {SessionStorageService} from 'ngx-webstorage';
 })
 export class HeaderComponent implements OnInit {
   logueado: boolean;
+  tipo: string;
+  id: string;
   constructor(private router:Router) { }
 
   ngOnInit() {
     this.logueado=this.ocultar();
+    this.tipo=sessionStorage.getItem('tipo');
+    this.id=sessionStorage.getItem('id');
   }
   logout(){
     console.log("logout");
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('password');
+    sessionStorage.removeItem('tipo');
+    sessionStorage.removeItem('id');
     this.router.navigate(['/home']);
   }
 
