@@ -7,7 +7,7 @@ export class Libro{
 	titulo: string;
 	ano: string;
 	genero: Genero;
-	precio: string;
+	precio: number;
 	cantidad: string;
 	descripcion: string;
 	imagen: string;

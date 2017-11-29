@@ -3,6 +3,7 @@ import {Libro} from './model/bestSeller.model';
 import {BestSellerListService} from './service/bestSeller-list.service';
 import { NgxCarousel } from 'ngx-carousel';
 import {Router} from '@angular/router';
+import { CartService } from 'app/common/cart/services/cart.service';
 
 @Component({
   selector: 'app-best-seller',
@@ -16,7 +17,7 @@ export class BestSellerComponent implements OnInit {
   public carouselTile: NgxCarousel;
   public carouselTileItems: Array<Libro>;
   logueado: boolean;
-  constructor(private _libroListService: BestSellerListService, router: Router) { 
+  constructor(private _libroListService: BestSellerListService, router: Router, private _cartService: CartService) { 
     this.router=router;}
 
   ngOnInit() {
@@ -58,5 +59,9 @@ export class BestSellerComponent implements OnInit {
       console.log("no hay logueado");
       return true;
     }
+  }
+
+  public addProductToCart(product: Libro): void {
+    this._cartService.addItem(product, 1);
   }
 }

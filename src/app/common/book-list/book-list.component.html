@@ -35,7 +35,7 @@
 
                       <div class="cart animate-effect" *ngIf="logueado">
                         <div class="action">
-                          <a class="add-to-cart" href="detail.html" title="Add to Cart">
+                          <a class="add-to-cart" (click)="addProductToCart(libro)" title="Añadir a Carrito" >
                             <i class="icon icon-plus fa fa-plus-circle"></i>
                           </a>
                           <a class="add-to-cart" href="#" title="Favourite">
