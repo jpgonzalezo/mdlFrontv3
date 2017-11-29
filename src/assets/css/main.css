@@ -3054,3 +3054,9 @@ button.add-to-cart {
 button.add-to-cart:hover {
   color: #629c49;
   }
+
+.small-book-cover img{
+  width: 72px;
+  height: 99px;
+  object-fit: cover;
+}

@@ -56,24 +56,7 @@ export class CatalogoComponent implements OnInit {
 
 
   public addProductToCart(product: Libro): void {
-    console.log(product);
     this._cartService.addItem(product, 1);
-  }
-
-  public removeProductFromCart(product: Libro): void {
-    this._cartService.addItem(product, -1);
-  }
-
-  public productInCart(product: Libro): boolean {
-    return Observable.create((obs: Observer<boolean>) => {
-      const sub = this._cartService
-                      .get()
-                      .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.id));
-                        obs.complete();
-                      });
-      sub.unsubscribe();
-    });
   }
 
 }

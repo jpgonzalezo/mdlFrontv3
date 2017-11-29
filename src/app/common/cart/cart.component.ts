@@ -61,6 +61,10 @@ export class CartComponent implements OnInit {
     this._cartService.addItem(product, -1);
   }
 
+  public addProductToCart(product: Libro): void {
+    this._cartService.addItem(product, 1);
+  }
+
   public productInCart(product: Libro): boolean {
     return Observable.create((obs: Observer<boolean>) => {
       const sub = this._cartService
