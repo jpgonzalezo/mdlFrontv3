@@ -65,8 +65,6 @@ export class CatalogoComponent implements OnInit {
     }
   }
 
-
-
   public addProductToCart(product: Libro): void {
     this._cartService.addItem(product, 1);
   }
