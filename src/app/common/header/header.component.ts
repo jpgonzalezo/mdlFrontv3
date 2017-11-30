@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   public itemCount: number;
   private products: Libro[];
   public cartItems: ICartItemWithProduct[];
-
+  public totalPay: number;
 
   constructor(private router:Router, private _cartService: CartService, private _librosListService : LibroListService) { }
 
@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
                            });
       });
     });
+    this.totalPay = parseInt(localStorage.getItem('totalPay'));
   }
   logout(){
     console.log("logout");
