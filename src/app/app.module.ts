@@ -53,7 +53,8 @@ import {LoginGuard} from './guard/login/login.guard';
 
 import {Pedido} from './common/cart/models/pedido.model';
 import {UrlPago} from './common/cart/models/urlPago.model';
-import { ResultadoPagoComponent } from './auth/resultado-pago/resultado-pago.component';
+import { PagoExitoComponent } from './auth/pago-exito/pago-exito.component';
+import { PagoFalloComponent } from './auth/pago-fallo/pago-fallo.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,9 @@ import { ResultadoPagoComponent } from './auth/resultado-pago/resultado-pago.com
     CartComponent,
     PerfilComponent,
     NotFoundComponent,
-    ResultadoPagoComponent
+    ResultadoPagoComponent,
+    PagoExitoComponent,
+    PagoFalloComponent
   ],
   imports: [
     BrowserModule,

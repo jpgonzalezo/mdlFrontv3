@@ -9,6 +9,8 @@ import {PerfilComponent} from './auth/perfil/perfil.component';
 import {NotFoundComponent} from './common/not-found/not-found.component'
 import { CartComponent } from 'app/common/cart/cart.component';
 import { ResultadoPagoComponent } from 'app/auth/resultado-pago/resultado-pago.component';
+import { PagoFalloComponent } from 'app/auth/pago-fallo/pago-fallo.component';
+import { PagoExitoComponent } from 'app/auth/pago-exito/pago-exito.component';
 
 export const routes:Routes =[
 {
@@ -36,7 +38,10 @@ export const routes:Routes =[
     path: 'cart',component: CartComponent
 },
 {
-    path: 'result',component: ResultadoPagoComponent
+    path: 'exito',component: PagoExitoComponent
+},
+{
+    path: 'fallo', component: PagoFalloComponent
 },
 {
     path:'**',component: NotFoundComponent
