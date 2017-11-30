@@ -99,7 +99,7 @@
                       </div><!-- /table-responsive -->
                   </div><!-- /.col -->
                   <div class="col-md-12">
-                      <a href="checkout.html" class="pull-right btn btn-primary btn-checkout">Continuar a Checkout &nbsp;<i class="fa fa-chevron-right"></i></a>
+                      <a  class="pull-right btn btn-primary btn-checkout" (click)="savePedido()">Continuar a Checkout &nbsp;<i class="fa fa-chevron-right"></i></a>
                       <button type="button" class="pull-right btn btn-primary btn-checkout" (click)="emptyCart()"
                       [attr.disabled]="itemCount === 0 ? true : null">Vaciar Carrito</button>
                   </div>
