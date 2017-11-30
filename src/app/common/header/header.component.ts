@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
                            });
       });
     });
-    this.totalPay = parseInt(localStorage.getItem('totalPay'));
   }
   logout(){
     console.log("logout");

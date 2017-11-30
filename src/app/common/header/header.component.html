@@ -13,7 +13,7 @@
         <li><a href="dealers">Dealers</a></li>
         <li><a href="login">Login</a></li>
         <li ><a href="/home" (click)="logout()">Salir</a></li>
-        <li class="active" *ngIf="logueado"><a href="cart">Total : ${{totalPay}}</a></li>
+        <li class="active" *ngIf="logueado"><a href="cart">Total : ${{(cart | async).grossTotal}}</a></li>
         <a *ngIf="logueado" href="cart" class="navbar-btn btn btn-cart"><img src="assets/images/shopping-cart.png" alt="" /><span class="badge-cart-items-count"></span></a>
       </ul><!-- /.navbar-nav -->
     </div><!-- /.container-->
