@@ -10,6 +10,7 @@ export class PagoExitoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

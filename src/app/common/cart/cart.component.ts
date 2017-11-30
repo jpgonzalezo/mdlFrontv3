@@ -110,7 +110,7 @@ export class CartComponent implements OnInit {
 
 
   obtenerLinkPedido(asunto:string,amount:string,correo:string){
-    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&payer_email=${correo}&notify_url=http://localhost:4200/home&return_url=http://localhost:4200/home&cancel_url=http://localhost:4200/asdasd`;
+    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&payer_email=${correo}&pedido_id=2&notify_url=http://localhost:4200/exito&return_url=http://localhost:4200/exito&cancel_url=http://localhost:4200/fallo`;
     const headers= new Headers({'Content-Type':'aplication/json'});
     const options= new RequestOptions({headers:headers});
     return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
