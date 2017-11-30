@@ -20,6 +20,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit, OnDestroy {
+  url:string;
   router: Router;
   id:number;
   idCatalogo:number;
@@ -46,7 +47,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
       this.isDealer=false;
       elemento.forEach(element => {
         if(element.id==this.id){
+          this.idCatalogo=this.id;
           this.editorial=element;
+          this.getCatalogo();
         }   
       });
       console.log("editorial perfil");
@@ -72,11 +75,18 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   public getCatalogo(){
-    const url=`http://localhost:8000/dealers/${this.idCatalogo}/catalogo`;
+    if(this.isDealer){
+      this.url=`http://localhost:8000/dealers/${this.idCatalogo}/catalogo`;
+    }
+    if(this.isEditorial){
+      console.log("url editorial");
+      this.url=`http://localhost:8000/libros?editorial_id=${this.idCatalogo}&format=json`;
+    }
+    console.log(this.url);
     const headers= new Headers({'Content-Type':'aplication/json'});
     const options= new RequestOptions({headers:headers});
-    return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
-    (data: Libro[])=>{this.libros=data;console.log(this.libros);},
+    return this._http.get(this.url,options).map((response)=> {console.log("sdaasdasdasdadas"); return response.json()}).subscribe(
+    (data: Libro[])=>{this.libros=data;console.log("servicio asigna libro");console.log(this.libros);},
     err=>{console.error();},
     ()=>{console.log("catalogo exitoso");console.log(this.libros);}
     );}

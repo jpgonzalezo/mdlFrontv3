@@ -34,6 +34,7 @@
             <li class="active" role="presentation" *ngIf="isEditorial"><a href="#more" data-toggle="tab">Más acerca de la Editorial</a></li>
           <li class="active" role="presentation" *ngIf="isDealer"><a href="#more" data-toggle="tab">Más acerca del Dealer</a></li>
           <li role="presentation" *ngIf="isDealer"><a href="#product-details" data-toggle="tab">Catálgo</a></li>
+          <li role="presentation" *ngIf="isEditorial"><a href="#product-details" data-toggle="tab">Libros Editorial</a></li>
         </ul><!-- /.nav -->
       <!-- Tab panes -->
       <div class="tab-content">
@@ -48,7 +49,7 @@
           </ul>
         </div><!-- /.tab-pane -->
   
-        <div class="tab-pane" id="product-details" role="tabpanel" *ngIf="isDealer">
+        <div class="tab-pane" id="product-details" role="tabpanel">
 
 
             <div class="tab-pane wow fadeInUp" id="list" role="tabpanel">
@@ -88,10 +89,13 @@
                                         <p class="hidden-sm hidden-md">{{libro.descripcion}}</p>
 
                                     </div><!-- /.featured-book-content -->
-                                    <div class="actions" *ngIf="logueado">
-                                        <button type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
-                                        <a class="add-to-cart" title="Favourite" href=""><i class="icon-heart fa fa-heart"></i></a>
-                                    </div><!-- /.actions -->
+                                    <div *ngIf="logueado">
+                                        <div class="actions" *ngIf="isDealer" >
+                                            <button *ngIf="isDealer" type="button" class="add-to-cart" (click)="addProductToCart(libro)"><i class="icon-plus fa fa-plus-circle"></i></button>
+                                            <a *ngIf="isDealer" class="add-to-cart" title="Eliminar" ><i class="icon-heart fa fa-trash"></i></a>
+                                        </div><!-- /.actions -->
+                                    </div>
+
                                 </div><!-- /.col -->
                             </div><!-- /.row -->
                         </div><!-- /.books -->

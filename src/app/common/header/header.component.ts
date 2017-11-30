@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
     sessionStorage.removeItem('password');
     sessionStorage.removeItem('tipo');
     sessionStorage.removeItem('id');
+    localStorage.removeItem('cart');
     this.router.navigate(['/home']);
   }
 
