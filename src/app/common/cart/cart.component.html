@@ -82,10 +82,18 @@
                       <div class="table-responsive">
                           <table class="table table-cart">
                               <tfoot>
-                                  <tr>
-                                      <td ><i class="icon-chevron fa fa-chevron-right"></i>&nbsp;Total:</td>
-                                      <td >${{(cart | async).grossTotal}}</td>
-                                  </tr>
+                                    <tr>
+                                        <td ><i class="icon-chevron fa fa-chevron-right"></i>&nbsp;Total bruto:</td>
+                                        <td >${{(cart | async).grossTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td ><i class="icon-chevron fa fa-chevron-right"></i>&nbsp;Comisión:</td>
+                                        <td>${{(cart | async).grossTotal*0.3}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td ><i class="icon-chevron fa fa-chevron-right"></i>&nbsp;Total a pagar:</td>
+                                        <td>${{(cart | async).grossTotal*0.7}}</td>
+                                    </tr>
                               </tfoot><!-- /tfoot -->
                           </table><!-- /table -->
                       </div><!-- /table-responsive -->

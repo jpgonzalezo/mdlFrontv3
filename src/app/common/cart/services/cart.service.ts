@@ -62,6 +62,7 @@ export class CartService {
                           .reduce((previous, current) => previous + current, 0);
   }
 
+  
   private retrieve(): Cart {
     const cart = new Cart();
     const storedCart = this.storage.getItem(CART_KEY);

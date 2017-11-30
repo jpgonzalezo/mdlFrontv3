@@ -23,6 +23,7 @@ export class CartComponent implements OnInit {
   public cart: Observable<Cart>;
   public cartItems: ICartItemWithProduct[];
   public itemCount: number;
+  public comision: number;
 
   private products: Libro[];
   private cartSubscription: Subscription;
