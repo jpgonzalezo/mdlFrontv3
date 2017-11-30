@@ -75,6 +75,7 @@ export class CartService {
 
   private save(cart: Cart): void {
     this.storage.setItem(CART_KEY, JSON.stringify(cart));
+    this.storage.setItem('totalPay', JSON.stringify(cart.grossTotal*0.7));
   }
 
   private dispatch(cart: Cart): void {
