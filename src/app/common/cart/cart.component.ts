@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   public cart: Observable<Cart>;
   public cartItems: ICartItemWithProduct[];
   public itemCount: number;
+  router: Router;
 
 
   private products: Libro[];
@@ -35,7 +36,7 @@ export class CartComponent implements OnInit {
   constructor(private _librosListService: LibroListService,
               private _cartService: CartService,
               private _http:Http, 
-              router: Router, pedido:Pedido , urlPago: UrlPago) {this.pedido=pedido; this.urlPago=urlPago; }
+              router: Router, pedido:Pedido , urlPago: UrlPago) {this.pedido=pedido; this.urlPago=urlPago; this.router=router;}
 
   public emptyCart(): void {
     this._cartService.empty();
@@ -115,7 +116,9 @@ export class CartComponent implements OnInit {
     const headers= new Headers({'Content-Type':'aplication/json'});
     const options= new RequestOptions({headers:headers});
     return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
-      (data: UrlPago)=>{this.urlPago=data;},
+      (data: UrlPago)=>{this.urlPago=data;
+      window.location.href=data.url_pago;
+      console.log(this.urlPago);},
       err=>{console.error();},
       ()=>{console.log(this.urlPago);}
       );
