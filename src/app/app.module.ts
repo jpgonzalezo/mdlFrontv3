@@ -77,7 +77,6 @@ import { PagoFalloComponent } from './auth/pago-fallo/pago-fallo.component';
     CartComponent,
     PerfilComponent,
     NotFoundComponent,
-    ResultadoPagoComponent,
     PagoExitoComponent,
     PagoFalloComponent
   ],
