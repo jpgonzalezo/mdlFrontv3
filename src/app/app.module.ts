@@ -51,6 +51,9 @@ import {EditorialListService} from './common/editorial-list/service/editorial-li
 import {LoginGuard} from './guard/login/login.guard';
 
 
+import {Pedido} from './common/cart/models/pedido.model';
+import {UrlPago} from './common/cart/models/urlPago.model';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +95,9 @@ import {LoginGuard} from './guard/login/login.guard';
               RegionListService, 
               CartService,
               EditorialListService,
-              LoginGuard
+              LoginGuard,
+              Pedido,
+              UrlPago
             ],
   bootstrap: [AppComponent]
 })

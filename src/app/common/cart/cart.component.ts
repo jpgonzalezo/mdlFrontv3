@@ -7,7 +7,8 @@ import { LibroListService } from 'app/common/book-list/services/newBook-list.ser
 import { CartService } from 'app/common/cart/services/cart.service';
 import { Observer } from 'rxjs/Observer';
 import { CartItem } from 'app/common/cart/models/cart-item.model';
-import {Pedido} from './models/pedido.model';
+import { Pedido } from './models/pedido.model';
+import { UrlPago} from './models/urlPago.model';
 import { Http, Headers, RequestOptions} from '@angular/http';
 import {Router} from '@angular/router';
 interface ICartItemWithProduct extends CartItem {
@@ -21,32 +22,35 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  
+  pedido :Pedido;
+  urlPago: UrlPago;
   public cart: Observable<Cart>;
   public cartItems: ICartItemWithProduct[];
   public itemCount: number;
 
-  pedido:Pedido;
+
   private products: Libro[];
   private cartSubscription: Subscription;
 
   constructor(private _librosListService: LibroListService,
               private _cartService: CartService,
               private _http:Http, 
-              router: Router) { }
+              router: Router, pedido:Pedido , urlPago: UrlPago) {this.pedido=pedido; this.urlPago=urlPago; }
 
   public emptyCart(): void {
     this._cartService.empty();
   }
 
   public savePedido(){
-  
+    console.log("hola");
+    console.log(this.pedido.dealer);
   this.pedido.total=123456;
   this.pedido.estado="completado";
   this.pedido.dealer=1;
+  this.obtenerLinkPedido('pago',this.pedido.total.toString(),'sebastian.vallejos@usach.cl');
   console.log("click en guardar pedido");
-  console.log(this.pedido.dealer);
-  this.guardarPedido(this.pedido);
+  
+  //this.guardarPedido(this.pedido);
   console.log("click en guardar pedido");
   }
   ngOnInit() {
@@ -102,6 +106,18 @@ export class CartComponent implements OnInit {
       (data: Libro[])=>{console.log(data);},
       err=>{console.error();},
       ()=>{console.log("guardado en base de datos");}
+      );
+  }
+
+
+  obtenerLinkPedido(asunto:string,amount:string,correo:string){
+    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&data_payer_email=${correo}`;
+    const headers= new Headers({'Content-Type':'aplication/json'});
+    const options= new RequestOptions({headers:headers});
+    return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
+      (data: UrlPago)=>{this.urlPago=data;},
+      err=>{console.error();},
+      ()=>{console.log(this.urlPago);}
       );
   }
 
