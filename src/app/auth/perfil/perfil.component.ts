@@ -13,6 +13,7 @@ import{Http,RequestOptions,Headers} from '@angular/http';
 import {Config} from '../../config';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { CartService } from 'app/common/cart/services/cart.service';
 
 @Component({
   selector: 'app-perfil',
@@ -39,7 +40,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
               private _editorialListService: EditorialListService,
               private _dealerListService: DealerListService,
               private _http: Http,
-              router: Router) { this.router=router; }
+              router: Router,
+              private _cartService: CartService) { this.router=router; }
 
   public buscarEditorial(elemento:Editorial[]){
     if(this.tipo==1){
@@ -130,6 +132,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  public addProductToCart(product: Libro): void {
+    this._cartService.addItem(product, 1);
   }
 
 
