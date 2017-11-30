@@ -45,10 +45,10 @@ export class CartComponent implements OnInit {
   public savePedido(){
     console.log("hola");
     console.log(this.pedido.dealer);
-  this.pedido.total=123456;
+  this.pedido.total=parseInt((parseInt(localStorage.getItem('cart'))*0.7).toString());
   this.pedido.estado="completado";
-  this.pedido.dealer=1;
-  this.obtenerLinkPedido('pago',this.pedido.total.toString(),'sebastian.vallejos@usach.cl');
+  this.pedido.dealer=parseInt(sessionStorage.getItem('id'));
+  this.obtenerLinkPedido('pagoLibros',this.pedido.total.toString(),sessionStorage.getItem('email'));
   console.log("click en guardar pedido");
   
   //this.guardarPedido(this.pedido);
