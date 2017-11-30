@@ -1,0 +1,21 @@
+<div *ngIf="pagoExito" class="not-found page">
+  <div class="container">
+      <div class="center-block  not-found-page-content">
+          <div class="page-header">
+              <h2 class="page-title">Pago realizado con éxito!</h2>
+              <a  class="btn btn-primary btn-checkout" href="/home">Volver a Home &nbsp;<i class="fa fa-chevron-right"></i></a>
+          </div><!-- /.page-header -->
+      </div><!-- /.col -->            
+  </div><!-- /.container -->
+</div><!-- /.not-found page -->
+<div *ngIf="!pagoExito" class="not-found page">
+  <div class="container">
+      <div class="center-block  not-found-page-content">
+          <div class="page-header">
+              <h2 class="page-title">No se pudo realizar tu pago :(</h2>
+              <p class="page-subtitle">Asegurate de volver a home para recargar la página</p>
+              <a  class="btn btn-primary btn-checkout" href="/cart">Volver al carrito &nbsp;<i class="fa fa-chevron-right"></i></a>
+          </div><!-- /.page-header -->
+      </div><!-- /.col -->            
+  </div><!-- /.container -->
+</div><!-- /.not-found page --> 

@@ -8,6 +8,7 @@ import {SearchDealerComponent} from './common/search-dealer/search-dealer.compon
 import {PerfilComponent} from './auth/perfil/perfil.component';
 import {NotFoundComponent} from './common/not-found/not-found.component'
 import { CartComponent } from 'app/common/cart/cart.component';
+import { ResultadoPagoComponent } from 'app/auth/resultado-pago/resultado-pago.component';
 
 export const routes:Routes =[
 {
@@ -33,6 +34,9 @@ export const routes:Routes =[
 },
 {
     path: 'cart',component: CartComponent
+},
+{
+    path: 'result',component: ResultadoPagoComponent
 },
 {
     path:'**',component: NotFoundComponent
