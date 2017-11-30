@@ -43,12 +43,10 @@ export class CartComponent implements OnInit {
   }
 
   public savePedido(){
-    console.log("hola");
-    console.log(this.pedido.dealer);
-  this.pedido.total=parseInt((parseInt(localStorage.getItem('cart'))*0.7).toString());
+  this.pedido.total=parseInt((parseInt(localStorage.getItem('totalPay'))).toString());
   this.pedido.estado="completado";
   this.pedido.dealer=parseInt(sessionStorage.getItem('id'));
-  this.obtenerLinkPedido('pagoLibros',this.pedido.total.toString(),sessionStorage.getItem('email'));
+  this.obtenerLinkPedido('Pago Mano Libros',this.pedido.total.toString(),sessionStorage.getItem('email'));
   console.log("click en guardar pedido");
   
   //this.guardarPedido(this.pedido);
@@ -112,7 +110,7 @@ export class CartComponent implements OnInit {
 
 
   obtenerLinkPedido(asunto:string,amount:string,correo:string){
-    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&data_payer_email=${correo}`;
+    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&payer_email=${correo}&notify_url=http://localhost:4200/home&return_url=http://localhost:4200/home&cancel_url=http://localhost:4200/asdasd`;
     const headers= new Headers({'Content-Type':'aplication/json'});
     const options= new RequestOptions({headers:headers});
     return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
