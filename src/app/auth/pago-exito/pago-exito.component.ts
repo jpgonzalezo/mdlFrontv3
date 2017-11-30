@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'app/common/cart/services/cart.service';
 
 @Component({
   selector: 'app-pago-exito',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pago-exito.component.css']
 })
 export class PagoExitoComponent implements OnInit {
-
-  constructor() { }
+  _cartService: CartService;
+  constructor(_cartService: CartService) { }
 
   ngOnInit() {
+    this._cartService.empty();
   }
 
 }
