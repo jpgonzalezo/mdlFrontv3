@@ -14,9 +14,9 @@ export class GeneroListComponent implements OnInit {
 
   ngOnInit() {
     this._generoListService.getAll().subscribe(
-      (data: Genero[])=>{this.generos=data;},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Genero[]) => {this.generos = data; },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
   }
 

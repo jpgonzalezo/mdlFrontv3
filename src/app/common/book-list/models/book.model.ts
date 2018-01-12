@@ -1,8 +1,8 @@
 import {Editorial} from '../../editorial-list/model/editorial.model';
 import {Autor} from '../../autor-list/model/autor.model';
-import {Genero} from '../../genero-list/model/genero.model'
+import {Genero} from '../../genero-list/model/genero.model';
 
-export class Libro{
+export class Libro {
 	id: number;
 	titulo: string;
 	ano: string;
@@ -12,5 +12,5 @@ export class Libro{
 	descripcion: string;
 	imagen: string;
 	editorial: Editorial;
-	autor:Autor;
+	autor: Autor;
 }

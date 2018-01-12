@@ -6,7 +6,7 @@ import { Libro } from 'app/common/book-list/models/book.model';
 import { LibroListService } from 'app/common/book-list/services/newBook-list.service';
 import { CartItem } from 'app/common/cart/models/cart-item.model';
 
-const CART_KEY = "cart";
+const CART_KEY = 'cart';
 
 @Injectable()
 export class CartService {
@@ -62,7 +62,7 @@ export class CartService {
                           .reduce((previous, current) => previous + current, 0);
   }
 
-  
+
   private retrieve(): Cart {
     const cart = new Cart();
     const storedCart = this.storage.getItem(CART_KEY);
@@ -75,7 +75,7 @@ export class CartService {
 
   private save(cart: Cart): void {
     this.storage.setItem(CART_KEY, JSON.stringify(cart));
-    this.storage.setItem('totalPay', JSON.stringify(cart.grossTotal*0.7));
+    this.storage.setItem('totalPay', JSON.stringify(cart.grossTotal * 0.7));
   }
 
   private dispatch(cart: Cart): void {

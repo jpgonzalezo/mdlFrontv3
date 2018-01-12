@@ -1,4 +1,4 @@
-export class Pedido{
+export class Pedido {
     total: number;
     estado: string;
     dealer: number;

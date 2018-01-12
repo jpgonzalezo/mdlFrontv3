@@ -21,14 +21,14 @@ export class BestSellerComponent implements OnInit {
   constructor(private _libroListService: BestSellerListService,
               router: Router,
               private _cartService: CartService,
-              private _authService: AuthenticationService) { 
-    this.router=router;}
+              private _authService: AuthenticationService) {
+    this.router = router; }
 
   ngOnInit() {
     this._libroListService.getAll().subscribe(
-      (data: Libro[])=>{this.libros=data;},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Libro[]) => {this.libros = data; },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
@@ -43,7 +43,7 @@ export class BestSellerComponent implements OnInit {
       touch: true,
       easing: 'ease'
     };
-    this.logueado=this._authService.logueado();;
+    this.logueado = this._authService.logueado();
   }
   public carouselTileLoad(evt: any) {
     const len = this.libros.length;
@@ -51,8 +51,8 @@ export class BestSellerComponent implements OnInit {
     for (let i = 0; i < len ; i++) {
     }
   }
-  public goToBookDetail(id :number){
-    this.router.navigate(['/detail',id]);
+  public goToBookDetail(id: number) {
+    this.router.navigate(['/detail', id]);
   }
 
   public addProductToCart(product: Libro): void {

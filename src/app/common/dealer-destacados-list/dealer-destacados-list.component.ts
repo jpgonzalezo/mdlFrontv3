@@ -13,14 +13,14 @@ export class DealerDestacadosListComponent implements OnInit {
   dealers: Array<Dealer>;
   router: Router;
   public carouselTile: NgxCarousel;
-  constructor(private _dealerListService: DealerListService, router: Router) { 
-    this.router=router;
+  constructor(private _dealerListService: DealerListService, router: Router) {
+    this.router = router;
   }
   ngOnInit() {
     this._dealerListService.getAll().subscribe(
-      (data: Dealer[])=>{this.dealers=data;},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Dealer[]) => {this.dealers = data; },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
@@ -34,7 +34,7 @@ export class DealerDestacadosListComponent implements OnInit {
       load: 2,
       touch: true,
       easing: 'ease'
-    }
+    };
   }
 
   public carouselTileLoad(evt: any) {
@@ -43,8 +43,8 @@ export class DealerDestacadosListComponent implements OnInit {
     for (let i = 0; i < len ; i++) {
     }
   }
-  public goToBookDetail(id :number){
-    this.router.navigate(['/detailDealer',id]);
+  public goToBookDetail(id: number) {
+    this.router.navigate(['/detailDealer', id]);
   }
 
 }

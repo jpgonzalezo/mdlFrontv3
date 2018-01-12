@@ -16,25 +16,25 @@ import { AuthenticationService } from 'app/public/login/service/authentication.s
 
 
 export class BookListComponent implements OnInit {
-  
+
   libros: Array<Libro>;
   router: Router;
   logueado: boolean;
-  
+
   public carouselTile: NgxCarousel;
   public carouselTileItems: Array<Libro>;
   constructor(private _libroListService: LibroListService,
               router: Router,
               private _cartService: CartService,
-              private _authService: AuthenticationService) { 
-    this.router=router;
+              private _authService: AuthenticationService) {
+    this.router = router;
   }
 
   ngOnInit() {
     this._libroListService.getAll().subscribe(
-      (data: Libro[])=>{this.libros=data;},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Libro[]) => {this.libros = data; },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
 
     this.carouselTile = {
@@ -49,9 +49,9 @@ export class BookListComponent implements OnInit {
       load: 2,
       touch: true,
       easing: 'ease'
-    }
+    };
 
-    this.logueado=this._authService.logueado();
+    this.logueado = this._authService.logueado();
   }
   public carouselTileLoad(evt: any) {
     const len = this.libros.length;
@@ -59,8 +59,8 @@ export class BookListComponent implements OnInit {
     for (let i = 0; i < len ; i++) {
     }
   }
-  public goToBookDetail(id :number){
-    this.router.navigate(['/detail',id]);
+  public goToBookDetail(id: number) {
+    this.router.navigate(['/detail', id]);
   }
 
 

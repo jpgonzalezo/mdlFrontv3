@@ -1,5 +1,5 @@
 import {Direccion} from './direccion.model';
-export class Dealer{
+export class Dealer {
 	id: number;
 	nombre: string;
 	fono: string;

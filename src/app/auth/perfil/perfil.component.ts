@@ -8,8 +8,8 @@ import {Libro} from '../../common/book-list/models/book.model';
 import {Router} from '@angular/router';
 
 
-import{Injectable} from '@angular/core';
-import{Http,RequestOptions,Headers} from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, RequestOptions, Headers} from '@angular/http';
 import {Config} from '../../config';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
@@ -22,18 +22,18 @@ import { AuthenticationService } from 'app/public/login/service/authentication.s
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit, OnDestroy {
-  url:string;
+  url: string;
   router: Router;
-  id:number;
-  idCatalogo:number;
+  id: number;
+  idCatalogo: number;
   tipo: number;
   dealer: Dealer;
   editorial: Editorial;
   editoriales: Array<Editorial>;
   dealers: Array<Dealer>;
-  private sub:any;
+  private sub: any;
   libros: Array<Libro>;
-  aux:Array<any>;
+  aux: Array<any>;
   isDealer: boolean;
   isEditorial: boolean;
   logueado: boolean;
@@ -63,13 +63,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   public buscarDealer(elemento: Dealer[]) {
     if (this.tipo === 0) {
-      this.isEditorial=false;
-      this.isDealer=true;
+      this.isEditorial = false;
+      this.isDealer = true;
       console.log(this.isDealer);
       elemento.forEach(element => {
-        if(element.id==this.id){
-          this.idCatalogo=this.id;
-          this.dealer=element;
+        if (element.id === this.id) {
+          this.idCatalogo = this.id;
+          this.dealer = element;
           this.getCatalogo();
         }
       });
@@ -78,46 +78,46 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getCatalogo(){
-    if(this.isDealer){
-      this.url=`http://localhost:8000/dealers/${this.idCatalogo}/catalogo`;
+  public getCatalogo() {
+    if (this.isDealer) {
+      this.url = `http://localhost:8000/dealers/${this.idCatalogo}/catalogo`;
     }
-    if(this.isEditorial){
-      console.log("url editorial");
-      this.url=`http://localhost:8000/libros?editorial_id=${this.idCatalogo}&format=json`;
+    if (this.isEditorial) {
+      console.log('url editorial');
+      this.url = `http://localhost:8000/libros?editorial_id=${this.idCatalogo}&format=json`;
     }
     console.log(this.url);
-    const headers= new Headers({'Content-Type':'aplication/json'});
-    const options= new RequestOptions({headers:headers});
-    return this._http.get(this.url,options).map((response)=> {console.log("sdaasdasdasdadas"); return response.json()}).subscribe(
-    (data: Libro[])=>{this.libros=data;console.log("servicio asigna libro");console.log(this.libros);},
-    err=>{console.error();},
-    ()=>{console.log("catalogo exitoso");console.log(this.libros);}
-    );}
+    const headers = new Headers({'Content-Type': 'aplication/json'});
+    const options = new RequestOptions({headers: headers});
+    return this._http.get(this.url, options).map((response) => {console.log('sdaasdasdasdadas'); return response.json(); }).subscribe(
+    (data: Libro[]) => {this.libros = data; console.log('servicio asigna libro'); console.log(this.libros); },
+    err => {console.error(); },
+    () => {console.log('catalogo exitoso'); console.log(this.libros); }
+    ); }
 
-  public goToBookDetail(id :number){
-    this.router.navigate(['/detail',id]);
+  public goToBookDetail(id: number) {
+    this.router.navigate(['/detail', id]);
   }
-  
+
   ngOnInit() {
-    this.logueado=this._authService.logueado();
-    this.sub=this.route.params.subscribe(
-      params=>{
-        this.id=+params['id'];
-        this.tipo=+params['tipo'];
+    this.logueado = this._authService.logueado();
+    this.sub = this.route.params.subscribe(
+      params => {
+        this.id = +params['id'];
+        this.tipo = +params['tipo'];
       }
     );
 
     this._editorialListService.getAll().subscribe(
-      (data: Editorial[])=>{this.editoriales=data;this.buscarEditorial(this.editoriales)},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Editorial[]) => {this.editoriales = data; this.buscarEditorial(this.editoriales); },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
 
     this._dealerListService.getAll().subscribe(
-      (data: Dealer[])=>{this.dealers=data;this.buscarDealer(this.dealers)},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Dealer[]) => {this.dealers = data; this.buscarDealer(this.dealers); },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
   }
 

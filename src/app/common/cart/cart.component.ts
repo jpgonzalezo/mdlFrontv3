@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Libro } from 'app/common/book-list/models/book.model';
@@ -22,7 +22,7 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  pedido :Pedido;
+  pedido: Pedido;
   urlPago: UrlPago;
   public cart: Observable<Cart>;
   public cartItems: ICartItemWithProduct[];
@@ -35,22 +35,22 @@ export class CartComponent implements OnInit {
 
   constructor(private _librosListService: LibroListService,
               private _cartService: CartService,
-              private _http:Http, 
-              router: Router, pedido:Pedido , urlPago: UrlPago) {this.pedido=pedido; this.urlPago=urlPago; this.router=router;}
+              private _http: Http,
+              router: Router, pedido: Pedido , urlPago: UrlPago) {this.pedido = pedido; this.urlPago = urlPago; this.router = router; }
 
   public emptyCart(): void {
     this._cartService.empty();
   }
 
-  public savePedido(){
-  this.pedido.total=parseInt((parseInt(localStorage.getItem('totalPay'))).toString());
-  this.pedido.estado="completado";
-  this.pedido.dealer=parseInt(sessionStorage.getItem('id'));
-  this.obtenerLinkPedido('Pago Mano Libros',this.pedido.total.toString(),sessionStorage.getItem('email'));
-  console.log("click en guardar pedido");
-  
+  public savePedido() {
+  this.pedido.total = parseInt((parseInt(localStorage.getItem('totalPay'))).toString());
+  this.pedido.estado = 'completado';
+  this.pedido.dealer = parseInt(sessionStorage.getItem('id'));
+  this.obtenerLinkPedido('Pago Mano Libros', this.pedido.total.toString(), sessionStorage.getItem('email'));
+  console.log('click en guardar pedido');
+
   //this.guardarPedido(this.pedido);
-  console.log("click en guardar pedido");
+  console.log('click en guardar pedido');
   }
   ngOnInit() {
     this.cart = this._cartService.get();
@@ -97,28 +97,28 @@ export class CartComponent implements OnInit {
   }
 
 
-  guardarPedido(pedido:Pedido){
-    const url= 'http://localhost:8000/pedidos/crear';
-    const headers= new Headers({'Content-Type':'aplication/json'});
-    const options= new RequestOptions({headers:headers});
-    return this._http.post(url,pedido,options).map((response)=> {console.log(response); return response.json()}).subscribe(
-      (data: Libro[])=>{console.log(data);},
-      err=>{console.error();},
-      ()=>{console.log("guardado en base de datos");}
+  guardarPedido(pedido: Pedido) {
+    const url = 'http://localhost:8000/pedidos/crear';
+    const headers = new Headers({'Content-Type': 'aplication/json'});
+    const options = new RequestOptions({headers: headers});
+    return this._http.post(url, pedido, options).map((response) => {console.log(response); return response.json(); }).subscribe(
+      (data: Libro[]) => {console.log(data); },
+      err => {console.error(); },
+      () => {console.log('guardado en base de datos'); }
       );
   }
 
 
-  obtenerLinkPedido(asunto:string,amount:string,correo:string){
-    const url= `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&payer_email=${correo}&pedido_id=2&notify_url=http://localhost:4200/exito&return_url=http://localhost:4200/exito&cancel_url=http://localhost:4200/fallo`;
-    const headers= new Headers({'Content-Type':'aplication/json'});
-    const options= new RequestOptions({headers:headers});
-    return this._http.get(url,options).map((response)=> {console.log(response); return response.json()}).subscribe(
-      (data: UrlPago)=>{this.urlPago=data;
-      window.location.href=data.url_pago;
-      console.log(this.urlPago);},
-      err=>{console.error();},
-      ()=>{console.log(this.urlPago);}
+  obtenerLinkPedido(asunto: string, amount: string, correo: string) {
+    const url = `http://localhost:8000/generar_pago/subject=${asunto}&amount=${amount}&payer_email=${correo}&pedido_id=2&notify_url=http://localhost:4200/exito&return_url=http://localhost:4200/exito&cancel_url=http://localhost:4200/fallo`;
+    const headers = new Headers({'Content-Type': 'aplication/json'});
+    const options = new RequestOptions({headers: headers});
+    return this._http.get(url, options).map((response) => {console.log(response); return response.json(); }).subscribe(
+      (data: UrlPago) => {this.urlPago = data;
+      window.location.href = data.url_pago;
+      console.log(this.urlPago); },
+      err => {console.error(); },
+      () => {console.log(this.urlPago); }
       );
   }
 

@@ -1,4 +1,4 @@
-export class LectorPedido{
+export class LectorPedido {
     pedido: number;
     lector: number;
 }

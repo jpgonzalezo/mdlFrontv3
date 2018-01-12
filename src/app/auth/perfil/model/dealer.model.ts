@@ -1,6 +1,6 @@
 import {Direccion} from './direccion.model';
 import {Libro} from '../../../common/book-list/models/book.model';
-export class Dealer{
+export class Dealer {
 	id: number;
 	nombre: string;
 	fono: string;

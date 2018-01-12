@@ -1,4 +1,4 @@
-export class Genero{
+export class Genero {
     id: number;
     tipo: string;
 }

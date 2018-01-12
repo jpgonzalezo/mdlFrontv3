@@ -13,40 +13,40 @@ import { AuthenticationService } from 'app/public/login/service/authentication.s
   styleUrls: ['./detail-book.component.css']
 })
 
-export class DetailBookComponent implements OnInit,OnDestroy {
-  id:number;
-  private sub:any;
+export class DetailBookComponent implements OnInit, OnDestroy {
+  id: number;
+  private sub: any;
   libros: Libro[];
   libroID: Libro;
   logueado: boolean;
-  cont:number;
-  
+  cont: number;
+
 
   constructor(private route: ActivatedRoute,
-              private _libroListService: LibroListService, 
+              private _libroListService: LibroListService,
               private _cartService: CartService,
-              private _authService: AuthenticationService){}
+              private _authService: AuthenticationService) {}
 
-  public buscarLibro(elemento:Libro[]){
+  public buscarLibro(elemento: Libro[]) {
     elemento.forEach(element => {
-      if(element.id==this.id){
-        this.libroID=element;
-      }   
+      if (element.id == this.id) {
+        this.libroID = element;
+      }
     });
   }
   ngOnInit() {
-    this.sub=this.route.params.subscribe(
-      params=>{
-        this.id=+params['id'];
+    this.sub = this.route.params.subscribe(
+      params => {
+        this.id = +params['id'];
         console.log(this.id);
       }
     );
     this._libroListService.getAll().subscribe(
-      (data: Libro[])=>{this.libros=data;this.buscarLibro(this.libros);console.log(this.libroID);},
-      err=>{console.error();},
-      ()=>{console.log('libros obtenidos exitosamente');}
+      (data: Libro[]) => {this.libros = data; this.buscarLibro(this.libros); console.log(this.libroID); },
+      err => {console.error(); },
+      () => {console.log('libros obtenidos exitosamente'); }
     );
-    this.logueado=this._authService.logueado();  
+    this.logueado = this._authService.logueado();
   }
 
   public addProductToCart(product: Libro): void {
@@ -69,11 +69,11 @@ export class DetailBookComponent implements OnInit,OnDestroy {
     });
   }
 
-  public recargar(){
-    
-    if(this.cont==1){
+  public recargar() {
+
+    if (this.cont == 1) {
       location.reload(true);
-      this.cont=0;
+      this.cont = 0;
     }
   }
 

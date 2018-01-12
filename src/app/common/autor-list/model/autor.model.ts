@@ -1,4 +1,4 @@
-export class Autor{
+export class Autor {
     id: number;
     nombre: string;
 }
