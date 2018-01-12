@@ -14,6 +14,7 @@ import {Config} from '../../config';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { CartService } from 'app/common/cart/services/cart.service';
+import { AuthenticationService } from 'app/public/login/service/authentication.service';
 
 @Component({
   selector: 'app-perfil',
@@ -41,26 +42,27 @@ export class PerfilComponent implements OnInit, OnDestroy {
               private _dealerListService: DealerListService,
               private _http: Http,
               router: Router,
-              private _cartService: CartService) { this.router=router; }
+              private _cartService: CartService,
+            private _authService: AuthenticationService) { this.router = router; }
 
-  public buscarEditorial(elemento:Editorial[]){
-    if(this.tipo==1){
-      this.isEditorial=true;
-      this.isDealer=false;
+  public buscarEditorial(elemento: Editorial[]) {
+    if (this.tipo === 1) {
+      this.isEditorial = true;
+      this.isDealer = false;
       elemento.forEach(element => {
-        if(element.id==this.id){
-          this.idCatalogo=this.id;
-          this.editorial=element;
+        if (element.id === this.id) {
+          this.idCatalogo = this.id;
+          this.editorial = element;
           this.getCatalogo();
-        }   
+        }
       });
-      console.log("editorial perfil");
-      console.log(this.editorial)
+      console.log('editorial perfil');
+      console.log(this.editorial);
     }
   }
 
-  public buscarDealer(elemento:Dealer[]){
-    if(this.tipo==0){
+  public buscarDealer(elemento: Dealer[]) {
+    if (this.tipo === 0) {
       this.isEditorial=false;
       this.isDealer=true;
       console.log(this.isDealer);
@@ -69,9 +71,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
           this.idCatalogo=this.id;
           this.dealer=element;
           this.getCatalogo();
-        }   
+        }
       });
-      console.log("dealer perfil");
+      console.log('dealer perfil');
       console.log(this.dealer);
     }
   }
@@ -96,20 +98,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public goToBookDetail(id :number){
     this.router.navigate(['/detail',id]);
   }
-
-  public ocultar(){
-    if(sessionStorage.getItem('email')===null){
-      console.log("hay un logueado");
-      return false;
-    }
-    else{
-      console.log("no hay logueado");
-      return true;
-    }
-  }
-
+  
   ngOnInit() {
-    this.logueado=this.ocultar();
+    this.logueado=this._authService.logueado();
     this.sub=this.route.params.subscribe(
       params=>{
         this.id=+params['id'];

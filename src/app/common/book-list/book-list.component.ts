@@ -5,6 +5,7 @@ import { NgxCarousel } from 'ngx-carousel';
 import {AppComponent} from '../../app.component';
 import {Router} from '@angular/router';
 import { CartService } from 'app/common/cart/services/cart.service';
+import { AuthenticationService } from 'app/public/login/service/authentication.service';
 
 
 @Component({
@@ -22,7 +23,10 @@ export class BookListComponent implements OnInit {
   
   public carouselTile: NgxCarousel;
   public carouselTileItems: Array<Libro>;
-  constructor(private _libroListService: LibroListService, router: Router, private _cartService: CartService) { 
+  constructor(private _libroListService: LibroListService,
+              router: Router,
+              private _cartService: CartService,
+              private _authService: AuthenticationService) { 
     this.router=router;
   }
 
@@ -47,7 +51,7 @@ export class BookListComponent implements OnInit {
       easing: 'ease'
     }
 
-    this.logueado=this.ocultar();
+    this.logueado=this._authService.logueado();
   }
   public carouselTileLoad(evt: any) {
     const len = this.libros.length;
@@ -59,16 +63,6 @@ export class BookListComponent implements OnInit {
     this.router.navigate(['/detail',id]);
   }
 
-  public ocultar(){
-    if(sessionStorage.getItem('email')===null){
-      console.log("hay un logueado");
-      return false;
-    }
-    else{
-      console.log("no hay logueado");
-      return true;
-    }
-  }
 
   public addProductToCart(product: Libro): void {
     this._cartService.addItem(product, 1);

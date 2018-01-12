@@ -6,43 +6,45 @@ import {CatalogoComponent} from './common/catalogo/catalogo.component';
 import {DetailBookComponent} from './common/detail-book/detail-book.component';
 import {SearchDealerComponent} from './common/search-dealer/search-dealer.component';
 import {PerfilComponent} from './auth/perfil/perfil.component';
-import {NotFoundComponent} from './common/not-found/not-found.component'
+import {NotFoundComponent} from './common/not-found/not-found.component';
 import { CartComponent } from 'app/common/cart/cart.component';
 import { PagoFalloComponent } from 'app/auth/pago-fallo/pago-fallo.component';
 import { PagoExitoComponent } from 'app/auth/pago-exito/pago-exito.component';
+import { AuthGuard } from 'app/guard/auth/auth.guard';
+import { PublicGuard } from 'app/guard/public/public.guard';
 
-export const routes:Routes =[
+export const routes: Routes = [
 {
-    path:'', pathMatch: 'full', redirectTo:'home'
+    path: '', pathMatch: 'full', redirectTo: 'home'
 },
 {
-    path:'login' ,component:LoginComponent
+    path: 'login' , component: LoginComponent, pathMatch: 'full', canActivate: [PublicGuard]
 },
 {
-    path:'home',component:HomeComponent
+    path: 'home', component: HomeComponent
 },
 {
-    path:'catalogo',component:CatalogoComponent
+    path: 'catalogo', component: CatalogoComponent
 },
 {
-    path: 'detail/:id',component: DetailBookComponent
+    path: 'detail/:id', component: DetailBookComponent
 },
 {
-    path: 'dealers',component: SearchDealerComponent
+    path: 'dealers', component: SearchDealerComponent
 },
 {
-    path: 'perfil/:tipo/:id',component: PerfilComponent
+    path: 'perfil/:tipo/:id', component: PerfilComponent
 },
 {
-    path: 'cart',component: CartComponent
+    path: 'cart', component: CartComponent, canActivate: [AuthGuard]
 },
 {
-    path: 'exito',component: PagoExitoComponent
+    path: 'exito', component: PagoExitoComponent, canActivate: [AuthGuard]
 },
 {
-    path: 'fallo', component: PagoFalloComponent
+    path: 'fallo', component: PagoFalloComponent, canActivate: [AuthGuard]
 },
 {
-    path:'**',component: NotFoundComponent
+    path: '**', component: NotFoundComponent
 }
-]
+];

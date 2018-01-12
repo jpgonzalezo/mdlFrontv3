@@ -8,6 +8,7 @@ import { Cart } from 'app/common/cart/models/cart.model';
 import { LibroListService } from 'app/common/book-list/services/newBook-list.service';
 import { Libro } from 'app/common/book-list/models/book.model';
 import { CartItem } from 'app/common/cart/models/cart-item.model';
+import { AuthenticationService } from 'app/public/login/service/authentication.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Libro;
@@ -31,12 +32,15 @@ export class HeaderComponent implements OnInit {
   public cartItems: ICartItemWithProduct[];
   public totalPay: number;
 
-  constructor(private router:Router, private _cartService: CartService, private _librosListService : LibroListService) { }
+  constructor(private router: Router,
+    private _cartService: CartService,
+    private _librosListService: LibroListService,
+    private _authService: AuthenticationService) { }
 
   ngOnInit() {
-    this.logueado=this.ocultar();
-    this.tipo=sessionStorage.getItem('tipo');
-    this.id=sessionStorage.getItem('id');
+    this.logueado = this._authService.logueado();
+    this.tipo = sessionStorage.getItem('tipo');
+    this.id = sessionStorage.getItem('id');
     this.cart = this._cartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
@@ -53,8 +57,8 @@ export class HeaderComponent implements OnInit {
       });
     });
   }
-  logout(){
-    console.log("logout");
+  logout() {
+    console.log('logout');
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('password');
     sessionStorage.removeItem('tipo');
@@ -62,17 +66,5 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('cart');
     this.router.navigate(['/home']);
   }
-
-  public ocultar(){
-    if(sessionStorage.getItem('email')===null){
-      console.log("hay un logueado");
-      return false;
-    }
-    else{
-      console.log("no hay logueado");
-      return true;
-    }
-  }
-
-  
 }
+

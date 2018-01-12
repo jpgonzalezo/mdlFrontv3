@@ -5,6 +5,7 @@ import {Libro} from '../book-list/models/book.model';
 import { CartService } from 'app/common/cart/services/cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { AuthenticationService } from 'app/public/login/service/authentication.service';
 
 @Component({
   selector: 'app-detail-book',
@@ -23,7 +24,8 @@ export class DetailBookComponent implements OnInit,OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private _libroListService: LibroListService, 
-              private _cartService: CartService){}
+              private _cartService: CartService,
+              private _authService: AuthenticationService){}
 
   public buscarLibro(elemento:Libro[]){
     elemento.forEach(element => {
@@ -44,7 +46,7 @@ export class DetailBookComponent implements OnInit,OnDestroy {
       err=>{console.error();},
       ()=>{console.log('libros obtenidos exitosamente');}
     );
-    this.logueado=this.ocultar();  
+    this.logueado=this._authService.logueado();  
   }
 
   public addProductToCart(product: Libro): void {
@@ -65,17 +67,6 @@ export class DetailBookComponent implements OnInit,OnDestroy {
                       });
       sub.unsubscribe();
     });
-  }
-
-  public ocultar(){
-    if(sessionStorage.getItem('email')===null){
-      console.log("hay un logueado");
-      return false;
-    }
-    else{
-      console.log("no hay logueado");
-      return true;
-    }
   }
 
   public recargar(){

@@ -38,4 +38,14 @@ export class AuthenticationService {
     this._locker.clear('user');
   }
 
+  public logueado() {
+    if (sessionStorage.getItem('email') === null) {
+      console.log('hay un logueado');
+      return false;
+    } else {
+      console.log('no hay logueado');
+      return true;
+    }
+  }
+
 }

@@ -1,5 +1,5 @@
 
-//MODULOS DE ANGULAR
+// MODULOS DE ANGULAR
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
-//COMPONENTES CREADOS
+// COMPONENTES CREADOS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { BookListComponent } from './common/book-list/book-list.component';
@@ -28,13 +28,13 @@ import { CartComponent } from './common/cart/cart.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
 
 
-//MODULOS EXTERNOS
+// MODULOS EXTERNOS
 import { OwlModule } from 'ngx-owl-carousel';
 import {Ng2Webstorage} from 'ngx-webstorage';
 import {routes} from './routes';
 
 
-//SERVICIOS CREADOS
+// SERVICIOS CREADOS
 import {LibroListService} from './common/book-list/services/newBook-list.service';
 import {BestSellerListService} from './common/best-seller/service/bestSeller-list.service';
 import { LoginComponent } from './public/login/login.component';
@@ -47,8 +47,10 @@ import { CartService } from './common/cart/services/cart.service';
 import { PerfilComponent } from './auth/perfil/perfil.component';
 import {EditorialListService} from './common/editorial-list/service/editorial-list.service';
 
-//GUARD CREADOS
+// GUARD CREADOS
 import {LoginGuard} from './guard/login/login.guard';
+import {AuthGuard} from './guard/auth/auth.guard';
+import {PublicGuard} from './guard/public/public.guard';
 
 
 import {Pedido} from './common/cart/models/pedido.model';
@@ -96,12 +98,14 @@ import { PagoFalloComponent } from './auth/pago-fallo/pago-fallo.component';
               HttpService,
               GeneroListService,
               DealerListService,
-              RegionListService, 
+              RegionListService,
               CartService,
               EditorialListService,
               LoginGuard,
               Pedido,
-              UrlPago
+              UrlPago,
+              AuthGuard,
+              PublicGuard
             ],
   bootstrap: [AppComponent]
 })
